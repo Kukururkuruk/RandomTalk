@@ -35,12 +35,12 @@ function App(): JSX.Element {
       children: [
         { path: '/', element: <MainPage /> },
         { path: '/signin', element: 
-        <PrivateRouter isAllowed={status === 'guest'} redirect='/favorite'>
+        <PrivateRouter isAllowed={status === 'guest'}>
           <SignInPage /> 
         </PrivateRouter>
         },
         { path: '/signup', element: 
-        <PrivateRouter isAllowed={status === 'guest'} redirect='/'>
+        <PrivateRouter isAllowed={status === 'guest'}>
           <SignUpPage /> 
         </PrivateRouter>
         },
