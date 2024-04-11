@@ -16,7 +16,7 @@ export default function NavBar(): JSX.Element {
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <HStack spacing={6}>
           <Box>Hi, {user.status === 'logged' ? user.username : 'guest'}</Box>
-          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink to="/addpoint" className={({ isActive }) => (isActive ? 'active' : '')}>
             Create
           </NavLink>
           <NavLink to="/mappage" className={({ isActive }) => (isActive ? 'active' : '')}>

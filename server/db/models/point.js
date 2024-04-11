@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     latitude: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER,
-    img: DataTypes.STRING
+    img: DataTypes.STRING,
+    rating: DataTypes.FLOAT,
   }, {
     sequelize,
     modelName: 'Point',
