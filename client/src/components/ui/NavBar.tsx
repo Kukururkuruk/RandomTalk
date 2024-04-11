@@ -22,7 +22,7 @@ export default function NavBar(): JSX.Element {
           <NavLink to="/favorite" className={({ isActive }) => (isActive ? 'active' : '')}>
             Find
           </NavLink>
-          <NavLink to='/dismiss' className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink to='/userpage' className={({ isActive }) => (isActive ? 'active' : '')}>
             UserPage
           </NavLink>
         </HStack>
