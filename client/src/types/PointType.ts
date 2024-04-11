@@ -1,4 +1,5 @@
 export type PointType = {
+  id: number,
   theme: string,
   cloth: string,
   longitude: string,

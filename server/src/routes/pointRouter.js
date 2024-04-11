@@ -1,5 +1,5 @@
 const express = require("express");
-const Point = require("../../db/models");
+const {Point} = require("../../db/models");
 // const { Character, User } = require('../../db/models');
 // const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
