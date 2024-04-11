@@ -7,4 +7,9 @@ export type PointType = {
   userId: number,
 };
 
+export type MapInitState = {
+  points: PointType[],
+  isLoading: boolean,
+  error: string | undefined,
+}
 
