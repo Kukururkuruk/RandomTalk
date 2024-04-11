@@ -1,32 +1,18 @@
-const express = require('express');
+const express = require("express");
+const Point = require("../../db/models");
 // const { Character, User } = require('../../db/models');
 // const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
 const apiPointRouter = express.Router();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+apiPointRouter.route("/").get(async (req, res) => {
+  const points = await Point.findAll({
+    order: [["id", "DESC"]],
+  });
+  res.json(points);
+});
 
 module.exports = apiPointRouter;
-
 
 // apiCharRouter
 //   .route('/')
@@ -88,4 +74,3 @@ module.exports = apiPointRouter;
 //     });
 //     res.json(char);
 //   });
-
