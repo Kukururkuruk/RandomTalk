@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import mapReducer from './slices/mapSlice';
 import authReducer from './slices/authSlice';
 import modalReducer from './slices/modalSlice';
+import addPointReducer from './slices/addPointSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     modal: modalReducer,
-    point: mapReducer
+    addPoints: addPointReducer,
+    point: mapReducer,
   },
 });
 

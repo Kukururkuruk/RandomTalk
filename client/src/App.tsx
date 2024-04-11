@@ -13,6 +13,8 @@ import UserPage from './components/pages/UserPage';
 import PageNotFound from './components/pages/PageNotFound';
 import { Box, Center, Heading, Text } from '@chakra-ui/react';
 
+import AddPointPage from './components/pages/AddPointPage';
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -61,7 +63,12 @@ function App(): JSX.Element {
           <PrivateRouter isAllowed={status === 'logged'}>
             <UserPage />
           </PrivateRouter>
-        }
+        },
+        { path: '/addpoint', element: 
+        <PrivateRouter isAllowed={status === 'logged'}>
+          <AddPointPage /> 
+        </PrivateRouter>
+        },
       ],
     },
   ]);
