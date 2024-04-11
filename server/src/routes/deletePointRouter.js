@@ -5,7 +5,7 @@ const verifyAccessToken = require('../middlewares/verifyAccessToken');
 const apiDeletePointRouter = express.Router();
 
 apiDeletePointRouter
-  .route('/:id')
+  .route('delete/:id')
   .delete(verifyAccessToken, async (req, res) => {
     await Point.destroy({
       where: { id: req.params.id },
