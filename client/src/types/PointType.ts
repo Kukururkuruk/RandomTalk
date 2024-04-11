@@ -6,6 +6,7 @@ export type PointType = {
   latitude: string,
   status: boolean,
   userId: number,
+  rating: number,
 };
 
 export type AddFormPointType = {

@@ -9,12 +9,17 @@ type PointCardProps = {
 }
 
 export default function PointCard({point, user}: PointCardProps) {
+    const starsList = [];
+  for (let i = 0; i < point.; i++) {
+    starsList.push(<i className="fa-solid fa-star" style={{ color: '#FFD43B' }} />);
+  }
     if (point.userId === (user.status === "logged" ? user.id : '')) 
   return (
     <Card border='2px' borderColor={point.status === true ? 'green' : 'red'}>
         <CardBody>
           <Text>Тема разговора: {point.theme}</Text><br />
           <Text>Отличительные черты вашего собеседника: {point.cloth}</Text><br />
+          <Text>Рейтинг встречи: </Text>
         </CardBody>
     </Card>
 
