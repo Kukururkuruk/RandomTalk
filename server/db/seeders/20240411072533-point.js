@@ -30,7 +30,7 @@ module.exports = {
           longitude: '37.618669',
           latitude: '55.763860',
           status: false,
-          userId:  1,
+          userId:  3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

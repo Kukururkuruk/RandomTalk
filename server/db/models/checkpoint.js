@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class CheckPoint extends Model {
     static associate({User, Point}) {
-      this.hasMany(User, {foreignKey: 'userId'})
-      this.hasMany(Point, {foreignKey: 'pointId'})
+      this.belongsTo(User, {foreignKey: 'userId'})
+      this.belongsTo(Point, {foreignKey: 'pointId'})
     }
   }
   CheckPoint.init({
