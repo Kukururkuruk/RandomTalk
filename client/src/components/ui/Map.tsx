@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import type { PointType } from '../../types/PointType';
 
 type MapProps = {
@@ -23,14 +22,29 @@ function Map({ points }: MapProps): JSX.Element  {
             zoom: 13,
           });
 
+          const tryMark = new ymaps.Placemark(
+            [55.661574, 37.573856],
+            {
+              balloonContentHeader: 'asdasdasd',
+              balloonContent: 'asdasdasd',
+              balloonContentFooter: `:3`,
+            },
+            {
+              iconLayout: 'default#image',
+              iconImageHref:
+                'https://art.kartinkof.club/uploads/posts/2023-07/thumbs/1690008779_art-kartinkof-club-p-idei-dlya-srisovki-shaurma-milii-94.png',
+              iconImageSize: [30, 30],
+              iconImageOffset: [-15, -15],
+            },
+          );
+
           for (let i = 0; i < data.length; i += 1) {
-            axios.get(`/api/menus/${i}`).then((res) => {
               const placemark = new ymaps.Placemark(
                 [Number(data[i].latitude), Number(data[i].longitude)],
                 {
-                  balloonContentHeader: res.data.name,
-                  balloonContent: `<a href='/kebabPage/${data[i].id}'>Подробнее</a>`,
-                  balloonContentFooter: `Цена: ${res.data.price} ₽`,
+                  balloonContentHeader: data[i].theme,
+                  balloonContent: data[i].cloth,
+                  balloonContentFooter: `:3`,
                 },
                 {
                   iconLayout: 'default#image',
@@ -41,8 +55,8 @@ function Map({ points }: MapProps): JSX.Element  {
                 },
               );
 
-              map.geoObjects.add(placemark);
-            });
+              map.geoObjects.add(tryMark).add(placemark);
+
           }
         });
       };

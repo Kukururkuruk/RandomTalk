@@ -3,10 +3,11 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import DismissItem from '../ui/DismissItem';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
+import Map from '../ui/Map';
 
 export default function MapPage(): JSX.Element {
-  const dispatch = useAppDispatch()
-  const points = useAppSelector((store) => store.point.points)
+  const dispatch = useAppDispatch();
+  const points = useAppSelector((store) => store.point.points);
 
   useEffect(() => {
     void dispatch(getPointsThunk());
@@ -25,15 +26,14 @@ export default function MapPage(): JSX.Element {
           Dismiss
         </Text>
         <Box mt={3} p={4} maxH="400px">
-        {points?.map((point, index) => (
-          <DismissItem key={point.id} index={index} point={point} />
-        ))}
-      </Box>
+          {points?.map((point, index) => (
+            <DismissItem key={point.id} index={index} point={point} />
+          ))}
+        </Box>
       </Box>
       <Box>
-
-    </Box>
+        <Map points={points}/>
+      </Box>
     </Flex>
-    
   );
 }

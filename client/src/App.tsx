@@ -11,6 +11,7 @@ import PrivateRouter from './components/HOCs/PrivateRouter';
 import LoaderProvider from './components/HOCs/LoaderProvider';
 import MapPage from './components/pages/MapPage';
 import UserPage from './components/pages/UserPage';
+import MapPage2 from './components/pages/MapPage2';
 
 
 
@@ -48,6 +49,7 @@ function App(): JSX.Element {
         </PrivateRouter>
         },
         {path: '/mappage', element: <MapPage />},
+        {path: '/mappage2', element: <MapPage2 />},
         {
           path: '/userpage', element: 
           <PrivateRouter isAllowed={status === 'logged'}>
