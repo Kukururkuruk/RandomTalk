@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from './hooks/useReduxHook';
 import PrivateRouter from './components/HOCs/PrivateRouter';
 import LoaderProvider from './components/HOCs/LoaderProvider';
 import MapPage from './components/pages/MapPage';
+import UserPage from './components/pages/UserPage';
+
 
 
 function App(): JSX.Element {
@@ -45,7 +47,13 @@ function App(): JSX.Element {
           <SignUpPage /> 
         </PrivateRouter>
         },
-        {path: '/mappage', element: <MapPage />}
+        {path: '/mappage', element: <MapPage />},
+        {
+          path: '/userpage', element: 
+          <PrivateRouter isAllowed={status === 'logged'}>
+            <UserPage />
+          </PrivateRouter>
+        }
       ],
     },
   ]);
