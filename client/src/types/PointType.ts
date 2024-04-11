@@ -7,4 +7,10 @@ export type PointType = {
   userId: number,
 };
 
+export type AddFormPointType = {
+  theme: string,
+  cloth: string,
+  longitude: string,
+  latitude: string,
+}
 

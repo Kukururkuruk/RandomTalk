@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import groupReducer from './slices/groupSlice';
 import authReducer from './slices/authSlice';
 import modalReducer from './slices/modalSlice';
+import addPointReducer from './slices/addPointSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     modal: modalReducer,
+    points: addPointReducer,
   },
 });
 
