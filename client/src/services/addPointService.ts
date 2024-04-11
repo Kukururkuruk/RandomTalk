@@ -7,7 +7,7 @@ class AddPointService {
 
     public async addPoint(formData: AddFormPointType): Promise<PointType>{
         try{
-            const result = await this.ApiService.post<PointType>('/points', formData);
+            const result = await this.ApiService.post<PointType>('/points/add', formData);
             return result.data;
         }catch(error){
             return Promise.reject(new Error('server err of AddPoint'));

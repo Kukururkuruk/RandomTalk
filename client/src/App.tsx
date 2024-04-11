@@ -9,6 +9,7 @@ import { checkTokenThunk } from './redux/thunkActions/authThunkActions';
 import { useAppDispatch, useAppSelector } from './hooks/useReduxHook';
 import PrivateRouter from './components/HOCs/PrivateRouter';
 import LoaderProvider from './components/HOCs/LoaderProvider';
+import AddPointPage from './components/pages/AddPointPage';
 
 
 function App(): JSX.Element {
@@ -42,6 +43,11 @@ function App(): JSX.Element {
         { path: '/signup', element: 
         <PrivateRouter isAllowed={status === 'guest'}>
           <SignUpPage /> 
+        </PrivateRouter>
+        },
+        { path: '/addpoint', element: 
+        <PrivateRouter isAllowed={status === 'logged'}>
+          <AddPointPage /> 
         </PrivateRouter>
         },
       ],
