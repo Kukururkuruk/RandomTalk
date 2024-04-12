@@ -10,7 +10,7 @@ type PointCardProps = {
 
 export default function PointCard({point, user}: PointCardProps) {
     const starsList = [];
-  for (let i = 0; i < point.; i++) {
+  for (let i = 0; i < point.rating; i++) {
     starsList.push(<i className="fa-solid fa-star" style={{ color: '#FFD43B' }} />);
   }
     if (point.userId === (user.status === "logged" ? user.id : '')) 
