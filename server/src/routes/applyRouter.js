@@ -7,21 +7,23 @@ const applyRouter = express.Router();
 applyRouter.post('/create', async (req, res) => {
     try {
         const { pointId } = req.body;
-
+        // Получение идентификатора пользователя из res.locals
+        const clientId = req.userId; 
         const access = await Access.create({ 
             pointId, 
-            clientId: res.locals.id,
+            clientId,
             status: false,
         }, {
             include: [Point]
         });
 
+        console.log(access)
         return res.status(200).json(access)
     } catch (error) {
         console.error('Error updating status:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
-})
+});
 
 applyRouter.put('/:id', async (req, res) => {
     try {
@@ -32,6 +34,7 @@ applyRouter.put('/:id', async (req, res) => {
         }
 
         const access = await Access.findAll({ where: { pointId: point.id} });
+        console.log(access);
         
         access.status = true;
         await access.save();
