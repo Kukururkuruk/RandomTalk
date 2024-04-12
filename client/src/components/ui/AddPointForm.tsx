@@ -1,10 +1,10 @@
-import { Button, Checkbox, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import React from 'react';
 import { useAppDispatch } from '../../hooks/useReduxHook';
 import type { AddFormPointType } from '../../types/PointType';
 import addPointThunk from '../../redux/thunkActions/addPointThunk';
 
-export default function CharacterAddForm(): JSX.Element {
+export default function CharacterAddForm({ initialCoordinates }: { initialCoordinates?: [number, number] }): JSX.Element {
   const dispatch = useAppDispatch();
 
   const addSubmitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -13,9 +13,15 @@ export default function CharacterAddForm(): JSX.Element {
       new FormData(event.currentTarget),
     ) as unknown as AddFormPointType;
 
-    void dispatch(addPointThunk(formData));
+    const updatedFormData = {
+      ...formData,
+      longitude: initialCoordinates ? initialCoordinates[1] : null,
+      latitude: initialCoordinates ? initialCoordinates[0] : null,
+    };
 
-    event.currentTarget.reset()
+    void dispatch(addPointThunk(updatedFormData as AddFormPointType));
+
+    event.currentTarget.reset();
   };
 
   return (
@@ -26,12 +32,6 @@ export default function CharacterAddForm(): JSX.Element {
 
         <FormLabel>Во что ты одет?</FormLabel>
         <Input name="cloth" type="text" />
-
-        <FormLabel>longitude</FormLabel>
-        <Input name="longitude" type="text" />
-
-        <FormLabel>latitude</FormLabel>
-        <Input name="latitude" type="text" />
 
         <Button type="submit">Add</Button>
       </FormControl>
