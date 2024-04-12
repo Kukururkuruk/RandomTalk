@@ -2,38 +2,29 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Points', {
+    await queryInterface.createTable('Accesses', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      theme: {
-        type: Sequelize.STRING
-      },
-      cloth: {
-        type: Sequelize.STRING
-      },
-      longitude: {
-        type: Sequelize.STRING
-      },
-      latitude: {
-        type: Sequelize.STRING
-      },
-      status: {
-        type: Sequelize.BOOLEAN
-      },
-      userId: {
+      clientId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id',
         }
       },
-      img: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      pointId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Points',
+          key: 'id',
+        }
+      },
+      status: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +37,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Points');
+    await queryInterface.dropTable('Accesses');
   }
 };

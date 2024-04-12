@@ -1,0 +1,27 @@
+import { createSlice } from '@reduxjs/toolkit'
+import { AccessType } from '../../types/AccessType';
+import { createAccessThunk, statusAccessThunk } from '../thunkActions/accessThunk';
+
+const initialState: {accesses: AccessType[]; access: null | AccessType} = {
+    accesses: [],
+    access: null,
+}
+
+const accessSlice = createSlice({
+  name: 'access',
+  initialState,
+  reducers: {},
+  extraReducers:(builder) => {
+      builder.addCase(createAccessThunk.fulfilled, (state, action) => {
+        state.accesses.unshift(action.payload)
+      })
+
+      builder.addCase(statusAccessThunk.fulfilled, (state) => {
+        state.access.status = true;
+      })
+  },
+});
+
+export const {} = accessSlice.actions
+
+export default accessSlice.reducer

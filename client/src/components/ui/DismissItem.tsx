@@ -1,6 +1,9 @@
 import React from 'react';
-import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import { PointType } from '../../types/PointType';
+import { useAppDispatch } from '../../hooks/useReduxHook';
+import updateStatusPointThunk from '../../redux/thunkActions/updatePointThunk';
+import { createAccessThunk } from '../../redux/thunkActions/accessThunk';
 
 type StudentItemProps = {
   point: PointType;
@@ -8,6 +11,12 @@ type StudentItemProps = {
 };
 
 export default function DismissItem({ point, index }: StudentItemProps): JSX.Element {
+  const handleButtonClick = () => {
+    dispatch(updateStatusPointThunk(point.id));
+    dispatch(createAccessThunk(point.id))
+  };
+
+  const dispatch = useAppDispatch();
 
   return (
     <Box
@@ -23,6 +32,7 @@ export default function DismissItem({ point, index }: StudentItemProps): JSX.Ele
     >
       <Text>{index + 1}</Text>
       <Text>{point.theme}</Text>
+      <Button colorScheme='whatsapp' onClick={handleButtonClick}>Отправить</Button>
     </Box>
   );
 }

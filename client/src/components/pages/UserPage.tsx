@@ -20,7 +20,8 @@ export default function UserPage({}: Props) {
     <div style={{ backgroundColor: 'lightblue', padding: '40px', borderRadius: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
       <div style={{ fontSize: '28px', marginBottom: '30px', textAlign: 'center' }}>Welcome, {user.status === 'logged' ? user.username : 'Guest'}</div>
       <WrapItem justifyContent="center">
-        <Avatar src='https://bit.ly/broken-link' size="xl" />
+        <Avatar src='https://bit.ly/broken-link' size="xl" /><br />
+        <Text>Ваш рейтинг: {user.status === "logged" ? user.rating : ""} <i className="fa-solid fa-star"></i> </Text>
       </WrapItem>
       <Flex style={{ marginTop: '40px', flexDirection: 'column', alignItems: 'center' }}>
         <Text fontSize="xl" mb="20px">Your Conversations:</Text>

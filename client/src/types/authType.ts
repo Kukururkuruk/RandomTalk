@@ -2,6 +2,7 @@ export type UserType = {
   id: number;
   username: string;
   email: string;
+  rating: number;
 };
 export type UserSignUpType = {
   username: string;
