@@ -10,10 +10,10 @@ export type PointType = {
 };
 
 export type AddFormPointType = {
+  longitude: number | null,
+  latitude: number | null,
   theme: string,
   cloth: string,
-  longitude: string,
-  latitude: string,
 };
 
 export type MapInitState = {

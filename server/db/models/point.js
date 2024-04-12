@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER,
     img: DataTypes.STRING,
-    rating: DataTypes.FLOAT,
   }, {
     sequelize,
     modelName: 'Point',
