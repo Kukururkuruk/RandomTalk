@@ -1,12 +1,12 @@
 export type AccessType = {
     id: number;
   pointId: number;
-  userId: number;
+  clientId: number;
   status: boolean;
 }
 
 export type AddAccessType = {
-    poindId: number;
-    userId: number;
+    pointId: number;
+    clientId: number;
     status: boolean;
 }
