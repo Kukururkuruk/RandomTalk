@@ -46,10 +46,9 @@ applyRouter.put('/:id', async (req, res) => {
     }
 })
 
-applyRouter.get('/:id', async (req, res) => {
+applyRouter.get('/applied', async (req, res) => {
     
 })
-
 
 
 

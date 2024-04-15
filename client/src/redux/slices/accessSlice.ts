@@ -20,7 +20,6 @@ const accessSlice = createSlice({
       builder.addCase(statusAccessThunk.fulfilled, (state) => {
         state.access.status = true;
       })
-
   },
 });
 

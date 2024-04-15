@@ -5,15 +5,11 @@ type MapProps = {
   points: PointType[];
 };
 
-function Map({ points }: MapProps): JSX.Element  {
-  const [data, setData] = useState(points);
-  console.log({ data });
-
+function Map({ points }: MapProps): JSX.Element {
   useEffect(() => {
-    if (data.length) {
+    if (points.length) {
       const script = document.createElement('script');
-      script.src =
-        "https://api-maps.yandex.ru/2.1/?apikey=2625da4a-fb70-440e-b1f7-b2d072017058&lang=ru_RU";
+      script.src = "https://api-maps.yandex.ru/2.1/?apikey=2625da4a-fb70-440e-b1f7-b2d072017058&lang=ru_RU";
       script.async = true;
       script.onload = () => {
         ymaps.ready(() => {
@@ -22,42 +18,24 @@ function Map({ points }: MapProps): JSX.Element  {
             zoom: 13,
           });
 
-          const tryMark = new ymaps.Placemark(
-            [55.661574, 37.573856],
-            {
-              balloonContentHeader: 'asdasdasd',
-              balloonContent: 'asdasdasd',
-              balloonContentFooter: `:3`,
-            },
-            {
-              iconLayout: 'default#image',
-              iconImageHref:
-                'https://art.kartinkof.club/uploads/posts/2023-07/thumbs/1690008779_art-kartinkof-club-p-idei-dlya-srisovki-shaurma-milii-94.png',
-              iconImageSize: [30, 30],
-              iconImageOffset: [-15, -15],
-            },
-          );
+          points.forEach(point => {
+            const placemark = new ymaps.Placemark(
+              [Number(point.latitude), Number(point.longitude)],
+              {
+                balloonContentHeader: point.theme,
+                balloonContent: point.cloth,
+                balloonContentFooter: `:3`,
+              },
+              {
+                iconLayout: 'default#image',
+                iconImageHref: 'https://art.kartinkof.club/uploads/posts/2023-07/thumbs/1690008779_art-kartinkof-club-p-idei-dlya-srisovki-shaurma-milii-94.png',
+                iconImageSize: [30, 30],
+                iconImageOffset: [-15, -15],
+              },
+            );
 
-          for (let i = 0; i < data.length; i += 1) {
-              const placemark = new ymaps.Placemark(
-                [Number(data[i].latitude), Number(data[i].longitude)],
-                {
-                  balloonContentHeader: data[i].theme,
-                  balloonContent: data[i].cloth,
-                  balloonContentFooter: `:3`,
-                },
-                {
-                  iconLayout: 'default#image',
-                  iconImageHref:
-                    'https://art.kartinkof.club/uploads/posts/2023-07/thumbs/1690008779_art-kartinkof-club-p-idei-dlya-srisovki-shaurma-milii-94.png',
-                  iconImageSize: [30, 30],
-                  iconImageOffset: [-15, -15],
-                },
-              );
-
-              map.geoObjects.add(tryMark).add(placemark);
-
-          }
+            map.geoObjects.add(placemark);
+          });
         });
       };
 
@@ -66,7 +44,7 @@ function Map({ points }: MapProps): JSX.Element  {
         document.body.removeChild(script);
       };
     }
-  }, [data]);
+  }, [points]);
 
   const mapStyle = {
     width: '600px',
@@ -82,5 +60,6 @@ function Map({ points }: MapProps): JSX.Element  {
     </div>
   );
 }
+
 
 export default Map;
