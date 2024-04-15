@@ -7,10 +7,7 @@ import Map from '../ui/Map';
 
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const access = useAppSelector((state) => state.access.access?.status ?? true);
-  const accessId = useAppSelector((state) => state.access.access?.clientId)
   const points = useAppSelector((state) => state.point.points);
-  const userID = useAppSelector((state) => state.auth.user.status === "logged" ? state.auth.user.id : '')
 
   useEffect(() => {
     void dispatch(getPointsThunk());

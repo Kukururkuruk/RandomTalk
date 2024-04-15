@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER,
     img: DataTypes.STRING,
+    clientId: DataTypes.INTEGER,
+    agreed: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Point',

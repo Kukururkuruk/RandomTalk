@@ -35,6 +35,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      clientId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      agreed: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
