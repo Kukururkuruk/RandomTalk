@@ -11,3 +11,4 @@ export const statusAccessThunk = createAsyncThunk('access/update', async (id: Ac
     await accessService.statusAccess(id);
     return id;
   })
+

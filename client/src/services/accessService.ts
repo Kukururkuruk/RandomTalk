@@ -1,6 +1,7 @@
 import type { AxiosInstance, AxiosResponse } from "axios";
 import apiInstance from './apiInstance'
 import { AccessType, AddAccessType } from "../types/AccessType";
+import { PointType } from "../types/PointType";
 
 class AddAccess {
     constructor(private readonly ApiService: AxiosInstance){}
@@ -17,6 +18,7 @@ class AddAccess {
     public async statusAccess(id: AccessType['id']):Promise<AxiosResponse> {
         return this.ApiService.put<AxiosResponse>(`/points/apply/${id}`).then((res) => res)
     }
+
 }
 
 export default new AddAccess(apiInstance);

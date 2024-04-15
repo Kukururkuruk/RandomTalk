@@ -1,11 +1,9 @@
 import React from 'react';
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import { PointType } from '../../types/PointType';
-; // Импортируем тип UserType
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import updateStatusPointThunk from '../../redux/thunkActions/updatePointThunk';
 import { createAccessThunk } from '../../redux/thunkActions/accessThunk';
-import { UserType } from '../../types/authType';
 
 type StudentItemProps = {
   point: PointType;
@@ -14,17 +12,12 @@ type StudentItemProps = {
 
 export default function DismissItem({ point, index }: StudentItemProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const userState = useAppSelector((state) => state.auth.user); // Получаем стейт пользователя
 
-  // Извлекаем UserType из UserStateType
-  let userType: UserType | undefined;
-  if (userState.status === 'logged') {
-    userType = userState;
-  }
+  const userID = useAppSelector((state) => state.auth.user.status === "logged" ? state.auth.user.id : '')
 
   const handleButtonClick = () => {
     dispatch(updateStatusPointThunk(point.id));
-    dispatch(createAccessThunk({ pointId: point.id, status: false, clientId: userType.id }));
+    dispatch(createAccessThunk({ pointId: point.id, status: false, clientId: userID }));
   };
 
   return (

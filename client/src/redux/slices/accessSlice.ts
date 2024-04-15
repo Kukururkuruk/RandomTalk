@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { AccessType } from '../../types/AccessType';
-import { createAccessThunk, statusAccessThunk } from '../thunkActions/accessThunk';
+import { createAccessThunk, getAppliedPointsThunk, statusAccessThunk } from '../thunkActions/accessThunk';
+import { PointType } from '../../types/PointType';
 
-const initialState: {accesses: AccessType[]; access: null | AccessType} = {
+const initialState: {accesses: AccessType[]; access: null | AccessType; accessed: PointType[]} = {
     accesses: [],
     access: null,
 }
@@ -19,6 +20,7 @@ const accessSlice = createSlice({
       builder.addCase(statusAccessThunk.fulfilled, (state) => {
         state.access.status = true;
       })
+
   },
 });
 

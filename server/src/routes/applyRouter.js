@@ -6,9 +6,7 @@ const applyRouter = express.Router();
 
 applyRouter.post('/create', async (req, res) => {
     try {
-        const { pointId } = req.body;
-        // Получение идентификатора пользователя из res.locals
-        const clientId = req.userId; 
+        const { pointId, clientId } = req.body;
         const access = await Access.create({ 
             pointId, 
             clientId,
@@ -28,22 +26,31 @@ applyRouter.post('/create', async (req, res) => {
 applyRouter.put('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-    const point = await Point.findOne({ where: { id } });
+        const point = await Point.findOne({ where: { id } });
         if (!point) {
             return res.status(404).json({ error: 'Point not found' });
         }
 
-        const access = await Access.findAll({ where: { pointId: point.id} });
-        console.log(access);
+        const accesses = await Access.findAll({ where: { pointId: point.id} });
+        console.log(accesses);
         
-        access.status = true;
-        await access.save();
+        for (const access of accesses) {
+            access.status = true;
+            await access.save();
+        }
 
-        res.sendStatus(200)
+        res.sendStatus(200);
     } catch (error) {
         console.error('Error updating status:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 })
+
+applyRouter.get('/:id', async (req, res) => {
+    
+})
+
+
+
 
 module.exports = applyRouter
