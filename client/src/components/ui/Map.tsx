@@ -1,72 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import type { PointType } from '../../types/PointType';
+import React, { useCallback, useEffect, useState } from 'react';
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { Flex, Image, Select } from '@chakra-ui/react';
+import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
+import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
+import giphy from '../../giphy.gif';
+import giphy1 from '../../giphy (1).gif';
+import giphy2 from '../../giphy (2).gif';
+import giphy3 from '../../giphy (3).gif';
+import giphy4 from '../../giphy (4).gif';
 
-type MapProps = {
-  points: PointType[];
-};
+const gifs = [
+  { id: 1, src: giphy },
+  { id: 2, src: giphy1 },
+  { id: 3, src: giphy2 },
+  { id: 4, src: giphy3 },
+  { id: 5, src: giphy4 },
+];
 
-function Map({ points }: MapProps): JSX.Element  {
-  const [data, setData] = useState(points);
-  console.log({ data });
+export default function MyMap(): JSX.Element {
+  const points = useAppSelector((store) => store.point.points);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (data.length) {
-      const script = document.createElement('script');
-      script.src =
-        "https://api-maps.yandex.ru/2.1/?apikey=2625da4a-fb70-440e-b1f7-b2d072017058&lang=ru_RU";
-      script.async = true;
-      script.onload = () => {
-        ymaps.ready(() => {
-          const map = new ymaps.Map('map', {
-            center: [55.751322, 37.6176],
-            zoom: 13,
-          });
-
-          const tryMark = new ymaps.Placemark(
-            [55.661574, 37.573856],
-            {
-              balloonContentHeader: 'asdasdasd',
-              balloonContent: 'asdasdasd',
-              balloonContentFooter: `:3`,
-            },
-            {
-              iconLayout: 'default#image',
-              iconImageHref:
-                'https://art.kartinkof.club/uploads/posts/2023-07/thumbs/1690008779_art-kartinkof-club-p-idei-dlya-srisovki-shaurma-milii-94.png',
-              iconImageSize: [30, 30],
-              iconImageOffset: [-15, -15],
-            },
-          );
-
-          for (let i = 0; i < data.length; i += 1) {
-              const placemark = new ymaps.Placemark(
-                [Number(data[i].latitude), Number(data[i].longitude)],
-                {
-                  balloonContentHeader: data[i].theme,
-                  balloonContent: data[i].cloth,
-                  balloonContentFooter: `:3`,
-                },
-                {
-                  iconLayout: 'default#image',
-                  iconImageHref:
-                    'https://art.kartinkof.club/uploads/posts/2023-07/thumbs/1690008779_art-kartinkof-club-p-idei-dlya-srisovki-shaurma-milii-94.png',
-                  iconImageSize: [30, 30],
-                  iconImageOffset: [-15, -15],
-                },
-              );
-
-              map.geoObjects.add(tryMark).add(placemark);
-
-          }
-        });
-      };
-
-      document.body.appendChild(script);
-      return () => {
-        document.body.removeChild(script);
-      };
-    }
-  }, [data]);
+    void dispatch(getPointsThunk());
+  }, []);
 
   const mapStyle = {
     width: '600px',
@@ -77,10 +35,35 @@ function Map({ points }: MapProps): JSX.Element  {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <div id="map" style={mapStyle} />
-    </div>
+    <YMaps query={{ apikey: '2625da4a-fb70-440e-b1f7-b2d072017058' }}>
+      <Map
+        style={mapStyle}
+        defaultState={{
+          center: [55.75222, 37.61763],
+          zoom: 10,
+        }}
+      >
+        {points.map((object) => (
+          <Placemark
+            key={object.id}
+            geometry={{
+              type: 'Point',
+              coordinates: [Number(object.latitude), Number(object.longitude)],
+            }}
+            properties={{
+              balloonContentHeader: `${object.theme}`,
+              balloonContentBody: `${object.cloth}`,
+            }}
+            options={{
+              iconLayout: 'default#image',
+              iconImageHref: object.img || giphy, // Если гифка не выбрана, используем первую по умолчанию
+              iconImageSize: [30, 42],
+              iconImageOffset: [-3, -42],
+            }}
+            modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
+          />
+        ))}
+      </Map>
+    </YMaps>
   );
 }
-
-export default Map;

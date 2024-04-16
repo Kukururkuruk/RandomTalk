@@ -4,6 +4,7 @@ export type PointType = {
   cloth: string,
   longitude: string,
   latitude: string,
+  img: string,
   status: boolean,
   userId: number,
 };
@@ -11,6 +12,7 @@ export type PointType = {
 export type AddFormPointType = {
   longitude: number | null,
   latitude: number | null,
+  img: string | null,
   theme: string,
   cloth: string,
 };

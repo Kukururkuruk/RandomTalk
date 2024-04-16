@@ -7,6 +7,7 @@ import giphy1 from '../../giphy (1).gif';
 import giphy2 from '../../giphy (2).gif';
 import giphy3 from '../../giphy (3).gif';
 import giphy4 from '../../giphy (4).gif';
+import { Flex, Image, Select } from '@chakra-ui/react';
 
 const gifs = [
   { id: 1, src: giphy },
@@ -16,16 +17,26 @@ const gifs = [
   { id: 5, src: giphy4 },
 ];
 
-export default function MapPage2({ onCoordinateSelection }): JSX.Element {
+export default function MapPage2({ onCoordinateSelection, onGifSelection }): JSX.Element {
   const points = useAppSelector((store) => store.point.points);
   const [mapClickCoords, setMapClickCoords] = useState(null);
-  const [selectedGif, setSelectedGif] = useState(gifs[0]);
+  const [selectedGif, setSelectedGif] = useState(giphy1); // По умолчанию выбрана первая гифка
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     void dispatch(getPointsThunk());
   }, []);
+
+  const handleSelectChange = (event) => {
+    const gif = event.target.value
+    setSelectedGif(gif);
+    onGifSelection(gif);
+  };
+
+  const handleGifClick = useCallback((gif: string) => {
+    onGifSelection(gif);
+  });
 
   const handleMapClick = useCallback((coords: [number, number]) => {
     onCoordinateSelection(coords);
@@ -66,7 +77,7 @@ export default function MapPage2({ onCoordinateSelection }): JSX.Element {
             }}
             options={{
               iconLayout: 'default#image',
-              iconImageHref: giphy,
+              iconImageHref: object.img || giphy, // Если гифка не выбрана, используем первую по умолчанию
               iconImageSize: [30, 42],
               iconImageOffset: [-3, -42],
             }}
@@ -80,13 +91,9 @@ export default function MapPage2({ onCoordinateSelection }): JSX.Element {
             options={{
               zIndex: 100,
             }}
-            properties={{
-              balloonContentHeader: `asdasdasd`,
-              balloonContentBody: `asdasdasdad`,
-            }}
             options={{
               iconLayout: 'default#image',
-              iconImageHref: giphy,
+              iconImageHref: selectedGif,
               iconImageSize: [30, 42],
               iconImageOffset: [-3, -42],
             }}
@@ -94,6 +101,24 @@ export default function MapPage2({ onCoordinateSelection }): JSX.Element {
           />
         )}
       </Map>
+            {/* Всплывающий балун */}
+            {mapClickCoords && (
+        <div className="balloon">
+          <h3>Выберите гифку:</h3>
+          <Flex align="center"> {/* Обернем Select и Image в Flex */}
+            <Select value={selectedGif} onChange={handleSelectChange} marginRight="2">
+              {gifs.map((gif) => (
+                <option key={gif.id} value={gif.src}>
+                  {`GIF ${gif.id}`}
+                </option>
+              ))}
+            </Select>
+            <Image src={selectedGif} boxSize="200px" />
+          </Flex>
+        </div>
+      )}
     </YMaps>
   );
 }
+
+
