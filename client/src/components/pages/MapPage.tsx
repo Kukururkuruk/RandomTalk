@@ -7,7 +7,8 @@ import MyMap from '../ui/Map';
 
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const points = useAppSelector((store) => store.point.points);
+  const points = useAppSelector((state) => state.point.points);
+  const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
 
   useEffect(() => {
     void dispatch(getPointsThunk());
@@ -25,15 +26,16 @@ export default function MapPage(): JSX.Element {
         >
           Dismiss
         </Text>
-        <Box mt={3} p={4} maxH="400px">
+        <Box mt={3} p={4} maxH="400px"> 
           {points?.map((point, index) => (
             <DismissItem key={point.id} index={index} point={point} />
           ))}
         </Box>
       </Box>
       <Box>
-        <MyMap points={points}/>
-      </Box>
+      <Map points={points.filter(point => point.agreed && point.clientId === userID)} />
+</Box>
+
     </Flex>
   );
 }

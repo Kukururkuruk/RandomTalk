@@ -9,7 +9,8 @@ apiAddPointRouter.post('/add', verifyAccessToken, async (req, res) => {
       const pointData = {
         ...req.body,
         userId: res.locals.user.id,
-        status: req.body.status === undefined ? false : req.body.status
+        status: req.body.status === undefined ? false : req.body.status,
+        agreed: false
       };
 
       const newPoint = await Point.create(pointData);
