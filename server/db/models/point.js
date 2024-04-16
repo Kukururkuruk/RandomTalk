@@ -4,10 +4,9 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Point extends Model {
-    static associate({User, CheckPoint, Access}) {
+    static associate({User, CheckPoint}) {
       this.belongsTo(User, {foreignKey: 'userId'})
       this.hasMany(CheckPoint, {foreignKey: 'pointId'})
-      this.hasMany(Access, {foreignKey: 'pointId'})
     }
   }
   Point.init({
@@ -20,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     img: DataTypes.STRING,
     clientId: DataTypes.INTEGER,
     agreed: DataTypes.BOOLEAN,
+    reason: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Point',

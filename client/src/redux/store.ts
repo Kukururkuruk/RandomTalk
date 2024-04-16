@@ -3,7 +3,7 @@ import mapReducer from './slices/mapSlice';
 import authReducer from './slices/authSlice';
 import modalReducer from './slices/modalSlice';
 import addPointReducer from './slices/addPointSlice';
-import accessReducer from './slices/accessSlice'
+import clientReducer from './slices/getClientSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +11,7 @@ export const store = configureStore({
     modal: modalReducer,
     addPoints: addPointReducer,
     point: mapReducer,
-    access: accessReducer,
+    client: clientReducer,
   },
 });
 

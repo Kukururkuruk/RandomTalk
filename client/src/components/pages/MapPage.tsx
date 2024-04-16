@@ -8,6 +8,7 @@ import Map from '../ui/Map';
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const points = useAppSelector((state) => state.point.points);
+  const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
 
   useEffect(() => {
     void dispatch(getPointsThunk());
@@ -32,9 +33,7 @@ export default function MapPage(): JSX.Element {
         </Box>
       </Box>
       <Box>
-  {access === true && (
-    <Map points={points.filter(point => point.status )} />
-  )}
+      <Map points={points.filter(point => point.agreed && point.clientId === userID)} />
 </Box>
 
 
