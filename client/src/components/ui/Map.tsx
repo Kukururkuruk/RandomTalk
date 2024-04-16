@@ -3,12 +3,15 @@ import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
 import giphy from '../../giphy.gif';
+
 export default function MyMap(): JSX.Element {
-  const points = useAppSelector((store) => store.point.points);
   const dispatch = useAppDispatch();
+  const points = useAppSelector((store) => store.point.points.filter(point => point.agreed && point.clientId === (store.auth.user.status === "logged" && store.auth.user.id)));
+
   useEffect(() => {
     void dispatch(getPointsThunk());
-  }, []);
+  }, [dispatch]);
+
   const mapStyle = {
     width: '600px',
     height: '600px',
@@ -16,6 +19,7 @@ export default function MyMap(): JSX.Element {
     borderRadius: '5px',
     margin: '10px auto',
   };
+
   return (
     <YMaps query={{ apikey: '2625da4a-fb70-440e-b1f7-b2d072017058' }}>
       <Map

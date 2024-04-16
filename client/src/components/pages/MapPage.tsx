@@ -33,7 +33,7 @@ export default function MapPage(): JSX.Element {
         </Box>
       </Box>
       <Box>
-      <Map points={points.filter(point => point.agreed && point.clientId === userID)} />
+      <MyMap points={points.filter(point => point.agreed && point.clientId === userID)} />
 </Box>
 
     </Flex>
