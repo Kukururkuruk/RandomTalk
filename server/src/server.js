@@ -27,6 +27,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/api/auth', authRouter);
+app.use('/api/client', getClientRouter)
 app.use('/api/tokens', tokensRouter);
 app.use('/api/point', PointRouter);
 app.use('/api/points', AddPointRouter);

@@ -12,7 +12,7 @@ export default function MyMap(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(getPointsThunk());
-  }, []);
+  }, [dispatch]);
 
   const filterPoints = (allPoints) => {
     return allPoints.filter(

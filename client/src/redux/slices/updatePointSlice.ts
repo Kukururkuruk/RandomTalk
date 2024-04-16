@@ -1,7 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit'
-import { EditPointState } from '../../types/editType';
-import updateStatusPointThunk from '../thunkActions/updatePointThunk';
+import { updateAgreePointThunk, updateClientPointThunk, updateStatusPointThunk } from '../thunkActions/updatePointThunk';
 import { PointType } from '../../types/PointType';
 
 const initialState: PointType = {
@@ -12,6 +11,9 @@ const initialState: PointType = {
     latitude: '',
     status: false,
     userId: 0,
+    agreed: true,
+    clientId: 0,
+    reason: '',
 }
 
 const updatePointSlice = createSlice({
@@ -22,6 +24,13 @@ const updatePointSlice = createSlice({
     builder
     .addCase(updateStatusPointThunk.fulfilled, (state) => {
         state.status = true
+    })
+    .addCase(updateClientPointThunk.fulfilled, (state, action) => {
+        state.clientId = action.payload.clientId
+        state.reason = action.payload.reason
+    })
+    .addCase(updateAgreePointThunk.fulfilled, (state) => {
+        state.agreed = true
     })
     }})
 
