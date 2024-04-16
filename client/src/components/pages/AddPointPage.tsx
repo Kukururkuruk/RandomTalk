@@ -5,6 +5,7 @@ import MapPage2 from './MapPage2';
 
 function AddPointPage(): JSX.Element {
   const [selectedCoordinates, setSelectedCoordinates] = useState(null);
+  const [selectedGif, setSelectedGif] = useState(null);
  console.log(selectedCoordinates);
  
   
@@ -12,14 +13,18 @@ function AddPointPage(): JSX.Element {
   const handleCoordinateSelection = useCallback((newCoordinates) => {
     setSelectedCoordinates(newCoordinates);
   }, []);
+  const handleGifSelection = useCallback((newGif) => {
+    setSelectedGif(newGif);
+  }, []);
+
 
   return (
     <Flex>
       <Box>
-        <AddPointForm  initialCoordinates={selectedCoordinates}  />
+        <AddPointForm  initialCoordinates={selectedCoordinates} initialGif={selectedGif}  />
       </Box>
       <Box>
-        <MapPage2 onCoordinateSelection={handleCoordinateSelection} />
+        <MapPage2 onCoordinateSelection={handleCoordinateSelection} onGifSelection={handleGifSelection} />
       </Box>
     </Flex>
   );

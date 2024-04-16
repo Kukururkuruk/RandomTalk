@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import DismissItem from '../ui/DismissItem';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
-import Map from '../ui/Map';
+import MyMap from '../ui/Map';
 
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -35,7 +35,6 @@ export default function MapPage(): JSX.Element {
       <Box>
       <Map points={points.filter(point => point.agreed && point.clientId === userID)} />
 </Box>
-
 
     </Flex>
   );

@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../hooks/useReduxHook';
 import type { AddFormPointType } from '../../types/PointType';
 import addPointThunk from '../../redux/thunkActions/addPointThunk';
 
-export default function CharacterAddForm({ initialCoordinates }: { initialCoordinates?: [number, number] }): JSX.Element {
+export default function CharacterAddForm({ initialCoordinates, initialGif }: { initialCoordinates?: [number, number], initialGif: string }): JSX.Element {
   const dispatch = useAppDispatch();
 
   const addSubmitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -17,6 +17,7 @@ export default function CharacterAddForm({ initialCoordinates }: { initialCoordi
       ...formData,
       longitude: initialCoordinates ? initialCoordinates[1] : null,
       latitude: initialCoordinates ? initialCoordinates[0] : null,
+      img: initialGif ? initialGif : null,
     };
 
     void dispatch(addPointThunk(updatedFormData as AddFormPointType));
