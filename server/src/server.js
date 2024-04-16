@@ -8,7 +8,6 @@ const authRouter = require('./routes/authRouter');
 const tokensRouter = require('./routes/tokensRouter');
 const PointRouter = require('./routes/pointRouter');
 const changeStatusRouter = require('./routes/changeStatusRouter');
-const getClientRouter = require('./routes/getClientRouter');
 
 
 require('dotenv').config();
