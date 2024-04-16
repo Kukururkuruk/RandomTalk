@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { YMaps, Map, Placemark, GeolocationControl } from '@pbe/react-yandex-maps';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
 import giphy from '../../giphy.gif';
@@ -46,6 +46,7 @@ export default function MyMap(): JSX.Element {
             modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
           />
         ))}
+        <GeolocationControl options={{ float: "left" }} />
       </Map>
     </YMaps>
   );

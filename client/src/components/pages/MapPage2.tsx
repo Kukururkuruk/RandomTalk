@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { YMaps, Map, Placemark, GeolocationControl } from '@pbe/react-yandex-maps';
 import { Flex, Image, Select } from '@chakra-ui/react';
 import giphy from '../../giphy.gif';
 import giphy1 from '../../giphy (1).gif';
@@ -71,6 +71,7 @@ export default function MapPage2({ onCoordinateSelection, onGifSelection }): JSX
             modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
           />
         )}
+        <GeolocationControl options={{ float: "left" }} />
       </Map>
       {/* Всплывающий балун */}
       {mapClickCoords && (
