@@ -6,10 +6,22 @@ import giphy from '../../giphy.gif';
 
 export default function MyMap(): JSX.Element {
   const points = useAppSelector((store) => store.point.points);
+  const bans = useAppSelector((store) => store.point.bans);
+  const userId = useAppSelector((store) => store.auth.user)
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(getPointsThunk());
   }, []);
+
+  const filterPoints = (allPoints) => {
+    return allPoints.filter(
+      (point) => !bans.some((ban) => ban.pointId === point.id)
+    );
+  };
+
+  const filteredPoints = filterPoints(points);
+
   const mapStyle = {
     width: '600px',
     height: '600px',
@@ -26,7 +38,7 @@ export default function MyMap(): JSX.Element {
           zoom: 10,
         }}
       >
-        {points.map((object) => (
+        {filteredPoints.map((object) => (
           <Placemark
             key={object.id}
             geometry={{

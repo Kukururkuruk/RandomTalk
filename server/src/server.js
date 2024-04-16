@@ -9,6 +9,7 @@ const tokensRouter = require('./routes/tokensRouter');
 const PointRouter = require('./routes/pointRouter');
 const changeStatusRouter = require('./routes/changeStatusRouter');
 const applyRouter = require('./routes/applyRouter');
+const apiBanPointRouter = require('./routes/banPointRouter');
 
 require('dotenv').config();
 
@@ -31,6 +32,7 @@ app.use('/api/point', PointRouter);
 app.use('/api/points', AddPointRouter);
 app.use('/api/points/delete', DeletePointRouter);
 app.use('/api/points/status', changeStatusRouter)
-app.use('/api/points/apply', applyRouter)
+app.use('/api/points/apply', applyRouter);
+app.use('/api/point/ban', apiBanPointRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

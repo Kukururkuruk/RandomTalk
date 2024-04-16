@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PointType } from "../../types/PointType";
-import addPointThunk from "../thunkActions/addPointThunk";
+import { addPointThunk } from "../thunkActions/addPointThunk";
+
 
 const initialState: { points: PointType[]; point: null | PointType; isLoading: boolean; error: string | undefined } = {
     points: [],

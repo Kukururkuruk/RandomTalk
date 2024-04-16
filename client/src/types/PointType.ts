@@ -17,8 +17,17 @@ export type AddFormPointType = {
   cloth: string,
 };
 
+export type BanType = {
+  id: number,
+  userId: number,
+  pointId: number,
+};
+
 export type MapInitState = {
   points: PointType[],
+  bans: BanType[],
   isLoading: boolean,
   error: string | undefined,
 };
+
+
