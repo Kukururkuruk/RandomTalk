@@ -1,13 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
-import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
+import React, { useCallback, useState } from 'react';
+import { YMaps, Map, Placemark, GeolocationControl } from '@pbe/react-yandex-maps';
+import { Flex, Image, Select } from '@chakra-ui/react';
 import giphy from '../../giphy.gif';
 import giphy1 from '../../giphy (1).gif';
 import giphy2 from '../../giphy (2).gif';
 import giphy3 from '../../giphy (3).gif';
 import giphy4 from '../../giphy (4).gif';
-import { Flex, Image, Select } from '@chakra-ui/react';
 
 const gifs = [
   { id: 1, src: giphy },
@@ -18,18 +16,11 @@ const gifs = [
 ];
 
 export default function MapPage2({ onCoordinateSelection, onGifSelection }): JSX.Element {
-  const points = useAppSelector((store) => store.point.points);
   const [mapClickCoords, setMapClickCoords] = useState(null);
-  const [selectedGif, setSelectedGif] = useState(giphy1); // По умолчанию выбрана первая гифка
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    void dispatch(getPointsThunk());
-  }, []);
+  const [selectedGif, setSelectedGif] = useState(giphy);
 
   const handleSelectChange = (event) => {
-    const gif = event.target.value
+    const gif = event.target.value;
     setSelectedGif(gif);
     onGifSelection(gif);
   };
@@ -64,26 +55,6 @@ export default function MapPage2({ onCoordinateSelection, onGifSelection }): JSX
           onCoordinateSelection(coords);
         }}
       >
-        {points.map((object) => (
-          <Placemark
-            key={object.id}
-            geometry={{
-              type: 'Point',
-              coordinates: [Number(object.latitude), Number(object.longitude)],
-            }}
-            properties={{
-              balloonContentHeader: `${object.theme}`,
-              balloonContentBody: `${object.cloth}`,
-            }}
-            options={{
-              iconLayout: 'default#image',
-              iconImageHref: object.img || giphy, // Если гифка не выбрана, используем первую по умолчанию
-              iconImageSize: [30, 42],
-              iconImageOffset: [-3, -42],
-            }}
-            modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
-          />
-        ))}
 
         {mapClickCoords && (
           <Placemark
@@ -100,12 +71,15 @@ export default function MapPage2({ onCoordinateSelection, onGifSelection }): JSX
             modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
           />
         )}
+        <GeolocationControl options={{ float: "left" }} />
       </Map>
-            {/* Всплывающий балун */}
-            {mapClickCoords && (
+      {/* Всплывающий балун */}
+      {mapClickCoords && (
         <div className="balloon">
           <h3>Выберите гифку:</h3>
-          <Flex align="center"> {/* Обернем Select и Image в Flex */}
+          <Flex align="center">
+            {' '}
+            {/* Обернем Select и Image в Flex */}
             <Select value={selectedGif} onChange={handleSelectChange} marginRight="2">
               {gifs.map((gif) => (
                 <option key={gif.id} value={gif.src}>
@@ -120,5 +94,3 @@ export default function MapPage2({ onCoordinateSelection, onGifSelection }): JSX
     </YMaps>
   );
 }
-
-

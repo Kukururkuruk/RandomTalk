@@ -2,7 +2,8 @@ import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import React from 'react';
 import { useAppDispatch } from '../../hooks/useReduxHook';
 import type { AddFormPointType } from '../../types/PointType';
-import addPointThunk from '../../redux/thunkActions/addPointThunk';
+import { addPointThunk } from '../../redux/thunkActions/addPointThunk';
+
 
 export default function CharacterAddForm({ initialCoordinates, initialGif }: { initialCoordinates?: [number, number], initialGif: string }): JSX.Element {
   const dispatch = useAppDispatch();

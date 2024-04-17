@@ -1,6 +1,6 @@
 import type { AxiosInstance } from "axios";
 import apiInstance from './apiInstance'
-import type { PointType , AddFormPointType } from "../types/PointType";
+import type { PointType , AddFormPointType, BanType } from "../types/PointType";
 
 class AddPointService {
     constructor(private readonly ApiService: AxiosInstance){}
@@ -13,6 +13,20 @@ class AddPointService {
             return Promise.reject(new Error('server err of AddPoint'));
         }
     }
+
+    public async banPoint(formData: BanType): Promise<BanType>{
+        try{
+            const result = await this.ApiService.post<BanType>('/point/ban', formData);
+            return result.data;
+        }catch(error){
+            return Promise.reject(new Error('server err of AddPoint'));
+        }
+    }
+
+    public async getBans(): Promise<BanType[]> {
+        const result = await this.ApiService.get<BanType[]>('/point/ban/all');
+        return result.data;
+      }
 }
 
 export default new AddPointService(apiInstance);
