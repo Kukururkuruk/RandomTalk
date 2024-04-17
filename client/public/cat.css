@@ -1,0 +1,114 @@
+/* .image-box {
+    width: 50%;
+    height: 50%;
+} */
+
+h1 {
+  color: #333;
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: large;
+  padding: 20px 30px 5px 30px;
+  background: #fff;
+  margin: 0;
+  position: relative;
+  perspective: 100px;
+  z-index: 10;
+  perspective-origin: 50% 50%;
+  box-shadow: 
+    -10px 0 #000000,
+    0 -10px #000000,
+    10px 0 #000000,
+    0 10px #000000;
+  
+  
+}
+
+#bubble {
+  opacity: 1.0;
+  display: inline-block;
+  max-width: 700px;
+
+  top: 50%;
+  left:50%;
+  box-shadow: 
+    -20px 0 #333,
+    0 -20px #333,
+    20px 0 #333,
+    0 20px #333,
+    -10px -10px #333,
+    -10px 10px #333,
+    10px 10px #333,
+    10px -10px #333,
+    10px 30px 20px rgba(#333, 0.7);
+
+}
+
+p {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  margin: 10px o;
+  animation: typing 1.5s steps(60, end);
+}
+
+p:nth-child(2) {
+  animation: typing-2 3.5s steps(60, end);
+}
+p:nth-child(3) {
+  animation: typing-2 5.5s steps(60, end);
+}
+p:nth-child(4) {
+  animation: typing-2 8s steps(60, end);
+}
+
+@keyframes typing {
+  from{width: 0;}
+}
+
+@keyframes typing-2 {
+  0% {width: 0;}
+  50% {width: 0;}
+  100% {width: 100;}
+}
+@keyframes typing-3 {
+  0% {width: 0;}
+  50% {width: 0;}
+  100% {width: 100;}
+}
+@keyframes typing-4 {
+  0% {width: 0;}
+  50% {width: 0;}
+  100% {width: 100;}
+}
+
+@keyframes blink {
+  to {opacity: .0;}
+}
+
+.cursor {
+  animation: blink is infinite;
+}
+
+
+
+/* #quote {
+  color: #25fd01;
+  font: 400 2em consolas;
+  width: 50ch;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: type 5s steps(50) infinite;
+  
+}
+
+@keyframes type {
+  0% {
+    width: 0;
+  }
+} */

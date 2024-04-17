@@ -3,24 +3,24 @@ import { YMaps, Map, Placemark, GeolocationControl } from '@pbe/react-yandex-map
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
 import giphy from '../../giphy.gif';
+import { getBansThunk } from '../../redux/thunkActions/addPointThunk';
 
 export default function MyMap(): JSX.Element {
   const points = useAppSelector((store) => store.point.points);
   const bans = useAppSelector((store) => store.point.bans);
-  const userId = useAppSelector((store) => store.auth.user)
+  const userId = useAppSelector((store) => store.auth.user.status === "logged" ? store.auth.user.id : '');
 
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     void dispatch(getPointsThunk());
+    void dispatch(getBansThunk());
   }, [dispatch]);
 
-  const filterPoints = (allPoints) => {
-    return allPoints.filter(
-      (point) => !bans.some((ban) => ban.pointId === point.id)
+  const filteredPoints = points.filter(
+      (point) => !bans.some((ban) => ban.pointId === point.id && ban.userId === userId)
     );
-  };
-
-  const filteredPoints = filterPoints(points);
+    
 
   const mapStyle = {
     width: '600px',

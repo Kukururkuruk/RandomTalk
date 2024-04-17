@@ -22,6 +22,11 @@ class AddPointService {
             return Promise.reject(new Error('server err of AddPoint'));
         }
     }
+
+    public async getBans(): Promise<BanType[]> {
+        const result = await this.ApiService.get<BanType[]>('/point/ban/all');
+        return result.data;
+      }
 }
 
 export default new AddPointService(apiInstance);

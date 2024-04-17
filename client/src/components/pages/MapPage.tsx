@@ -4,15 +4,22 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import DismissItem from '../ui/DismissItem';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
 import MyMap from '../ui/Map';
+import { getBansThunk } from '../../redux/thunkActions/addPointThunk';
 
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const points = useAppSelector((state) => state.point.points);
+  const bans = useAppSelector((store) => store.point.bans);
   const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
 
   useEffect(() => {
     void dispatch(getPointsThunk());
+    void dispatch(getBansThunk());
   }, []);
+
+  const filteredPoints = points.filter(
+    (point) => !bans.some((ban) => ban.pointId === point.id && ban.userId === userID)
+  );
 
   return (
     <Flex justify="center">
@@ -27,13 +34,13 @@ export default function MapPage(): JSX.Element {
           Dismiss
         </Text>
         <Box mt={3} p={4} maxH="400px"> 
-          {points?.map((point, index) => (
+          {filteredPoints?.map((point, index) => (
             <DismissItem key={point.id} index={index} point={point} />
           ))}
         </Box>
       </Box>
       <Box>
-      <MyMap points={points.filter(point => point.agreed && point.clientId === userID)} />
+      <MyMap/>
 </Box>
 
     </Flex>

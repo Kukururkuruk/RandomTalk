@@ -14,3 +14,8 @@ export const banPointThunk = createAsyncThunk('point/ban', async (formData: BanT
   const result = await addPointService.banPoint(formData);
   return result;
 });
+
+export const getBansThunk = createAsyncThunk<BanType[]>('points/getBans', async () => {
+  const result = await addPointService.getBans();
+  return result;
+});
