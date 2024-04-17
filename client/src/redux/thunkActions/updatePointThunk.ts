@@ -7,6 +7,15 @@ export const updateStatusPointThunk = createAsyncThunk('point/updateStatusPoint'
     return id;
   });
 
+  export const updateStatusPointFalseThunk = createAsyncThunk('point/updateStatusPointFalse', async (id: PointType['id']) => {
+    await updatePointStatus.updateStatusFalse(id);
+    return id;
+  });
+  export const updateVisibilityPointFalseThunk = createAsyncThunk('point/updateVisibilityPointFalse', async (id: PointType['id']) => {
+    await updatePointStatus.updateVisibilityFalse(id);
+    return id;
+  });
+
   export const updateClientPointThunk = createAsyncThunk(
     'point/updateClientPoint',
     async (point: UpdatePointType) => {

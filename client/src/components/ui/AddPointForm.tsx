@@ -3,10 +3,12 @@ import React from 'react';
 import { useAppDispatch } from '../../hooks/useReduxHook';
 import type { AddFormPointType } from '../../types/PointType';
 import { addPointThunk } from '../../redux/thunkActions/addPointThunk';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function CharacterAddForm({ initialCoordinates, initialGif }: { initialCoordinates?: [number, number], initialGif: string }): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const addSubmitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -21,7 +23,7 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
       img: initialGif ? initialGif : null,
     };
 
-    void dispatch(addPointThunk(updatedFormData as AddFormPointType));
+    void dispatch(addPointThunk(updatedFormData as AddFormPointType)).then(navigate('/mappage'));
 
     event.currentTarget.reset();
   };
