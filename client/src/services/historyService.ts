@@ -18,6 +18,17 @@ class AddHistoryService {
             throw new Error('Failed to create history record');
         }
 }
+
+public async fetchHistory(): Promise<HistoryType[]> {
+    try {
+        const response = await this.ApiService.get<HistoryType[]>('/history');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching history:', error);
+        throw new Error('Failed to fetch history');
+    }
+}
+    
 }
 
 export default new AddHistoryService(apiInstance);

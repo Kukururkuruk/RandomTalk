@@ -15,8 +15,7 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
     const theme = point.id === history.pointId ? point.theme : ''
     const author = point.userId === history.userId ? (user.status === "logged" ? user.username : '') : ''
     const client = point.clientId === history.clientId ? useAppSelector((state) => state.client.username) : ''
-
-    console.log(theme)
+    
   return (
     <Box
       borderWidth="1px"

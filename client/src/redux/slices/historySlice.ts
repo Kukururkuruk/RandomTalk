@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { HistoryType } from "../../types/historyType";
-import { addHistoryThunk } from "../thunkActions/historyThunk";
+import { HistoryInitState, HistoryType } from "../../types/historyType";
+import { addHistoryThunk, fetchHistoryThunk} from "../thunkActions/historyThunk";
 
-const initialState: HistoryType[] = [];
+const initialState: HistoryInitState  = {
+    histories: [],
+    isLoading:false,
+    error: '',
+}
 
 export const addHistorySlice = createSlice({
     name: 'history',
@@ -11,8 +15,11 @@ export const addHistorySlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(addHistoryThunk.fulfilled, (state, action) => {
-                state.push(action.payload);
-            });
+                state.histories.push(action.payload);
+            })
+            .addCase(fetchHistoryThunk.fulfilled, (state, action) => {
+                state.histories = action.payload
+            })
     }
 });
 

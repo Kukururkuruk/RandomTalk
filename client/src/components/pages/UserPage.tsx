@@ -5,6 +5,7 @@ import PointCard from '../ui/PointCard'
 import { useDispatch } from 'react-redux'
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction'
 import HistoryCard from '../ui/HistoryCard'
+import { fetchHistoryThunk } from '../../redux/thunkActions/historyThunk'
 
 type Props = {}
 
@@ -12,11 +13,15 @@ export default function UserPage({}: Props) {
   const dispatch = useDispatch();
   const user = useAppSelector((state) => state.auth.user);
   const { points } = useAppSelector((state) => state.point)
-  const histories = useAppSelector((state) => state.history)
+  const histories = useAppSelector((state) => state.history.histories)
 
   useEffect(() => {
     void dispatch(getPointsThunk());
+    void dispatch(fetchHistoryThunk())
   }, [dispatch]);
+
+  console.log(histories);
+  
 
   return (
     <div style={{ backgroundColor: 'lightblue', padding: '40px', borderRadius: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
@@ -32,9 +37,9 @@ export default function UserPage({}: Props) {
         )} <br />
         <Text>История:</Text>
         {histories.map((history) => {
-          const historyPoint = points.find((point) => point.id === history.pointId);
-          return (
-            <HistoryCard history={history} key={history.id} user={user} point={historyPoint}/>
+            const historyPoint = points.find((point) => point.id === history.pointId);
+            return (
+              <HistoryCard history={history} key={history.id} user={user} point={historyPoint}/>
           );
         })}
       </Flex>

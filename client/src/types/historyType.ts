@@ -4,3 +4,9 @@ export type HistoryType = {
     clientId: number,
     pointId: number,
 }
+
+export type HistoryInitState = {
+    histories: HistoryType[],
+    isLoading: boolean,
+    error: string | undefined,
+}

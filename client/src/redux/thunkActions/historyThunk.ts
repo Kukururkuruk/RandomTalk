@@ -13,3 +13,16 @@ export const addHistoryThunk = createAsyncThunk(
     }
   }
 );
+
+export const fetchHistoryThunk = createAsyncThunk(
+  'history/fetchHistory',
+  async () => {
+    try {
+      const result = await historyService.fetchHistory();
+      return result;
+    } catch (error) {
+      console.error('Failed to add history record:', error);
+      throw new Error('Failed to add history record');
+    }
+  }
+);

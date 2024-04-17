@@ -20,4 +20,14 @@ historyRouter.post('/history', async (req,res) => {
       }
 })
 
+historyRouter.get('/history', async (req, res) => {
+  try {
+    const histories = await History.findAll();
+    return res.status(200).json(histories);
+  } catch (error) {
+    console.error('Error fetching history records:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 module.exports = historyRouter
