@@ -5,6 +5,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Image,
   Input,
   Text,
   VStack,
@@ -14,6 +15,7 @@ import { useAppDispatch } from '../../hooks/useReduxHook';
 import { signUpThunk } from '../../redux/thunkActions/authThunkActions';
 import { openModalWithError } from '../../redux/slices/modalSlice';
 import type { UserSignUpType } from '../../types/authType';
+import regCat from '../../../public/regCat.jpeg'
 // import { useNavigate } from 'react-router-dom';
 
 export default function SignUpPage(): JSX.Element {
@@ -43,17 +45,17 @@ export default function SignUpPage(): JSX.Element {
   };
 
   return (
-    <Flex justify="center">
-      <Box bg={useColorModeValue('', 'gray.900')} w="lg" p={8} borderRadius="md">
-        <Text
-          fontSize="2xl"
-          fontWeight="bold"
-          align="center"
-          mb={4}
-          color={useColorModeValue('gray.900', 'gray.100')}
-        >
-          Sign Up
-        </Text>
+    <Flex justify="center" align="center" minHeight="100vh" p={12}>
+      <Flex direction={{ base: "column", md: "row" }} align="center" gap={10}>
+        <Box bg={useColorModeValue('white', 'gray.900')} w="lg" p={8} borderRadius="md" shadow="md">
+        <Image 
+            src={regCat}
+            alt="A cool cat" 
+            style={{ transform: 'scale(1.01)' }} 
+          />
+          <Text fontSize="2xl" fontWeight="bold" align="center" mb={4} color={useColorModeValue('gray.900', 'gray.100')}>
+            Sign Up
+          </Text>
 
         <form onSubmit={submitHandler}>
           <VStack spacing={4}>
@@ -93,6 +95,7 @@ export default function SignUpPage(): JSX.Element {
           </VStack>
         </form>
       </Box>
+      </Flex>
     </Flex>
   );
 }

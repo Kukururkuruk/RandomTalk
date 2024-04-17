@@ -95,7 +95,18 @@
   animation: blink is infinite;
 }
 
+@keyframes RandomTalk {
+  0% { background-position: 0% 97%; }
+  50% { background-position: 100% 4%; }
+  100% { background-position: 0% 97%; }
+}
 
+#root {
+  height: 100vh;  
+  background: linear-gradient(321deg, #fda065, #ad574a, #4f535e);
+  background-size: 600% 600%;
+  animation: RandomTalk 30s ease infinite;
+}
 
 /* #quote {
   color: #25fd01;
