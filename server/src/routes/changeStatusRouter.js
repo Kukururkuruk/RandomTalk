@@ -63,5 +63,40 @@ changeStatusRouter.put('/agreed/:id', async (req, res) => {
     }
 })
 
+changeStatusRouter.put('/false/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const point = await Point.findByPk(id);
+        if (!point) {
+            return res.status(404).json({ error: 'Point not found' });
+        }
+
+        point.status = false
+        await point.save()
+
+        return res.sendStatus(200);
+    } catch (error) {
+        console.error('Error updating status:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+changeStatusRouter.put('/visibility/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const point = await Point.findByPk(id);
+        if (!point) {
+            return res.status(404).json({ error: 'Point not found' });
+        }
+
+        point.visibility = false
+        await point.save()
+
+        return res.sendStatus(200);
+    } catch (error) {
+        console.error('Error updating status:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 module.exports = changeStatusRouter;

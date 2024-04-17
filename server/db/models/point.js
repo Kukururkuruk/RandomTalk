@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     clientId: DataTypes.INTEGER,
     agreed: DataTypes.BOOLEAN,
     reason: DataTypes.TEXT,
+    visibility: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Point',
