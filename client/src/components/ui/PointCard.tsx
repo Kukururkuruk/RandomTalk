@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, CardBody, Text } from '@chakra-ui/react';
-import type { PointType } from '../../types/PointType';
-import type { UserStateType } from '../../types/authType';
+import { PointType } from '../../types/PointType';
+import { UserStateType } from '../../types/authType';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
-import { banPointThunk } from '../../redux/thunkActions/addPointThunk';
 import { updateAgreePointThunk } from '../../redux/thunkActions/updatePointThunk';
 import getClientThunk from '../../redux/thunkActions/getClientThunk';
 
@@ -16,10 +15,6 @@ export default function PointCard({ point, user }: PointCardProps) {
   const dispatch = useAppDispatch();
   const clientName = useAppSelector((state) => state.client.username);
   const [buttonsVisible, setButtonsVisible] = useState(true);
-
-  const banHandler = () => {
-    dispatch(banPointThunk({ userId: point.clientId, pointId: point.id }));
-  };
 
   useEffect(() => {
     void dispatch(getClientThunk(point.clientId));
@@ -49,13 +44,12 @@ export default function PointCard({ point, user }: PointCardProps) {
             <Button bg="green" textColor="white" onClick={handleApplyButtonClick}>
               Apply
             </Button>
-            <Button bg="red" textColor="white" onClick={banHandler}>
-              Reject
-            </Button>
+            <Button bg="red" textColor="white">Reject</Button>
           </>
         )}
       </Card>
     );
+  } else {
+    return null;
   }
-  return null;
 }

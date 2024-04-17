@@ -13,10 +13,10 @@ export default function MainPage(): JSX.Element {
       <Box>
         <Heading fontSize="2xl">Аниме-кот бариста</Heading>
         <Stack spacing={4} overflow="hidden" bg="white" borderRadius="lg" px={4} py={6}>
-          <Text fontSize="xl">Здравствуй пирожочек!</Text>
-          <Text fontSize="xl">Рад тебя видеть</Text>
-          <Text fontSize="xl">Заходи присаживайся или</Text>
-          <Text fontSize="xl">ты хочешь поискать с кем поговорить? <Text className="cursor" blinkAnimation={{ animation: 'blink 1s infinite ease-in-out' }}>|</Text></Text>
+          <Text className='p' fontSize="xl">Здравствуй пирожочек!</Text>
+          <Text className='p' fontSize="xl">Рад тебя видеть</Text>
+          <Text className='p' fontSize="xl">Заходи присаживайся или</Text>
+          <Text className='p' fontSize="xl">ты хочешь поискать с кем поговорить? <Text className="cursor" blinkAnimation={{ animation: 'blink 1s infinite ease-in-out' }}>|</Text></Text>
         </Stack>
         <Flex gap={2} mt={4}>
           <Button variant="solid" colorScheme="blue">

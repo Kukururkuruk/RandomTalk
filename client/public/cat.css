@@ -3,7 +3,7 @@
     height: 50%;
 } */
 
-h1 {
+/* h1 {
   color: #333;
   font-family: "Pixelify Sans", sans-serif;
   font-optical-sizing: auto;
@@ -23,7 +23,7 @@ h1 {
     0 10px #000000;
   
   
-}
+} */
 
 #bubble {
   opacity: 1.0;
@@ -45,7 +45,7 @@ h1 {
 
 }
 
-p {
+.p {
   font-family: "Pixelify Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -57,13 +57,13 @@ p {
   animation: typing 1.5s steps(60, end);
 }
 
-p:nth-child(2) {
+.p:nth-child(2) {
   animation: typing-2 3.5s steps(60, end);
 }
-p:nth-child(3) {
+.p:nth-child(3) {
   animation: typing-2 5.5s steps(60, end);
 }
-p:nth-child(4) {
+.p:nth-child(4) {
   animation: typing-2 8s steps(60, end);
 }
 
