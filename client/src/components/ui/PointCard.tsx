@@ -5,6 +5,7 @@ import { UserStateType } from '../../types/authType';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import { updateAgreePointThunk } from '../../redux/thunkActions/updatePointThunk';
 import getClientThunk from '../../redux/thunkActions/getClientThunk';
+import { addHistoryThunk } from '../../redux/thunkActions/historyThunk';
 
 type PointCardProps = {
   point: PointType;
@@ -22,6 +23,7 @@ export default function PointCard({ point, user }: PointCardProps) {
 
   const handleApplyButtonClick = () => {
     dispatch(updateAgreePointThunk(point.id));
+    dispatch(addHistoryThunk({userId: point.userId, clientId: point.clientId, pointId: point.id}))
     setButtonsVisible(false);
   };
 
