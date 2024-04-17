@@ -25,7 +25,6 @@ const mapSlice = createSlice({
     builder.addCase(banPointThunk.fulfilled, (state, action) => {
       if (state.bans) {
         state.bans = [action.payload, ...state.bans];
-
       }
     });
 

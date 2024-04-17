@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { AuthStateType } from '../../types/authType';
 import { checkTokenThunk, logOutThunk, signInThunk, signUpThunk } from '../thunkActions/authThunkActions';
+import { editRatingPointThunk } from '../thunkActions/addPointThunk';
 
 const initialState: AuthStateType = {
   accessToken: '',
@@ -34,6 +35,12 @@ const authSlice = createSlice({
     })
     .addCase(signUpThunk.rejected, (state) => {
       state.user = { status: 'guest' };
+    });
+
+    builder.addCase(editRatingPointThunk.fulfilled, (state, action) => {
+      state.user = state.user?.map((el) =>
+        el.id === action.payload.id ? action.payload : el,
+      );
     });
 
     builder.addCase(logOutThunk.fulfilled, (state) => {

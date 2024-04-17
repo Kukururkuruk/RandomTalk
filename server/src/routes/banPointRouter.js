@@ -8,8 +8,6 @@ const apiBanPointRouter = express.Router();
 apiBanPointRouter.post("/", async (req, res) => {
   try {
     const { userId, pointId } = req.body;
-    console.log(userId);
-    console.log(pointId);
     const ban = await Ban.create({ userId, pointId });
     res.status(201).json(ban);
   } catch (error) {

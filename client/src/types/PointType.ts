@@ -29,6 +29,12 @@ export type AddFormPointType = {
 export type BanType = {
   id: number,
   userId: number,
+  rating: number,
+};
+
+export type RatingType = {
+  id: number,
+  userId: number,
   pointId: number,
 };
 
