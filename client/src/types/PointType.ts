@@ -10,6 +10,7 @@ export type PointType = {
   agreed: boolean,
   clientId: number,
   reason: string,
+  visibility: boolean,
 };
 
 export type UpdatePointType = {
