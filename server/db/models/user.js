@@ -2,16 +2,17 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate({ Point, CheckPoint }) {
+    static associate({ Point, CheckPoint}) {
       this.hasMany(Point, { foreignKey: 'userId' });
-      this.belongsTo(CheckPoint, {foreignKey: 'userId'})
+      this.hasMany(CheckPoint, {foreignKey: 'userId'})
     }
   }
   User.init(
     {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      hashpass: DataTypes.STRING,
+    username: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    rating: DataTypes.FLOAT,
     },
     {
       sequelize,

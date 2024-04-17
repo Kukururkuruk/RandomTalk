@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Point extends Model {
     static associate({User, CheckPoint}) {
       this.belongsTo(User, {foreignKey: 'userId'})
-      this.belongsTo(CheckPoint, {foreignKey: 'pointId'})
+      this.hasMany(CheckPoint, {foreignKey: 'pointId'})
     }
   }
   Point.init({
@@ -16,7 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     latitude: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER,
-    img: DataTypes.STRING
+    img: DataTypes.STRING,
+    clientId: DataTypes.INTEGER,
+    agreed: DataTypes.BOOLEAN,
+    reason: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'Point',
