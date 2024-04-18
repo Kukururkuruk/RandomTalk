@@ -111,7 +111,6 @@ import { UserStateType } from '../../types/authType';
 import { HistoryType } from '../../types/historyType';
 import { useAppSelector } from '../../hooks/useReduxHook';
 import ratingPointService from '../../services/ratingService';
-
 type HistoryCardProps = {
     history: HistoryType;
     point: PointType;
@@ -122,7 +121,7 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
   const [ratingValue, setRatingValue] = useState(0);
     const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
     const theme = point.id === history.pointId ? point.theme : ''
-    const author = point.userId === userID ? 
+    const author = point.userId === userID ?
     useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.username : '') :
     useAppSelector((state) => state.client.username);
     const client = point.clientId === history.clientId ? useAppSelector((state) => state.client.username) : (useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.username : ''))
@@ -149,6 +148,9 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
       p="4"
       mb="4"
       boxShadow="md"
+
+      width="700px"
+
     >
       <Text fontSize="xl" fontWeight="semibold" mb="2">
         Тема разговора: {theme}
@@ -162,6 +164,7 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
                 onClick={handleRating}
                 size={50}
                 transition
+                style={{display: "flex", justifyContent: "start" }}
                 showTooltip
                 tooltipArray={[
                   'ОТКРОЙТЕ ФОРТОЧКУ',
