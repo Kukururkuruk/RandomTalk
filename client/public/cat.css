@@ -95,7 +95,38 @@
   animation: blink is infinite;
 }
 
+#root {
+  height: 100vh;  /* The height of the root element is 100% of the viewport height */
+  background: linear-gradient(0deg, #fda065, #4f535e); /* New gradient direction and colors */
+  background-size: 400% 400%; /* Updated size */
+  animation: AnimationName 22s ease infinite; /* New animation details */
+}
 
+/* Standard syntax */
+@keyframes AnimationName {
+  0% { background-position: 47% 0%; }
+  50% { background-position: 54% 100%; }
+  100% { background-position: 47% 0%; }
+}
+
+/* Firefox */
+@-moz-keyframes AnimationName {
+  0% { background-position: 47% 0%; }
+  50% { background-position: 54% 100%; }
+  100% { background-position: 47% 0%; }
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes AnimationName {
+  0% { background-position: 47% 0%; }
+  50% { background-position: 54% 100%; }
+  100% { background-position: 47% 0%; }
+}
+
+.rounded-map {
+  border-radius: 20px;
+  overflow: hidden;
+}
 
 /* #quote {
   color: #25fd01;

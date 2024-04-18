@@ -1,4 +1,4 @@
-import { Avatar, Flex, Text, WrapItem } from '@chakra-ui/react'
+import { Flex, Text, WrapItem, Box } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useAppSelector } from '../../hooks/useReduxHook'
 import PointCard from '../ui/PointCard'
@@ -24,17 +24,19 @@ export default function UserPage({}: Props) {
   
 
   return (
-    <div style={{ backgroundColor: 'lightblue', padding: '40px', borderRadius: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
-      <div style={{ fontSize: '28px', marginBottom: '30px', textAlign: 'center' }}>Welcome, {user.status === 'logged' ? user.username : 'Guest'}</div>
+    <div style={{ backgroundColor: 'FDA065', padding: '40px', borderRadius: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
+      <div style={{ fontSize: '28px', marginBottom: '30px', textAlign: 'center' }}>Здравствуй, {user.status === 'logged' ? user.username : 'Guest'} !</div>
       <WrapItem justifyContent="center">
-        <Avatar src='https://bit.ly/broken-link' size="xl" /><br />
         <Text>Ваш рейтинг: {user.status === "logged" ? user.rating : ""} <i className="fa-solid fa-star"></i> </Text>
       </WrapItem>
-      <Flex style={{ marginTop: '40px', flexDirection: 'column', alignItems: 'center' }}>
-        <Text fontSize="xl" mb="20px">Your Conversations:</Text>
+      <Flex style={{ marginTop: '40px', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
+        <Box>
+        <Text fontSize="xl" mb="20px">Активные точки:</Text>
         {points.map((point) =>
           <PointCard point={point} key={point.id} user={user} />
         )} <br />
+        </Box>
+        <Box>
         <Text>История:</Text>
         {histories.map((history) => {
             const historyPoint = points.find((point) => point.id === history.pointId);
@@ -42,6 +44,7 @@ export default function UserPage({}: Props) {
               <HistoryCard history={history} key={history.id} user={user} point={historyPoint}/>
           );
         })}
+        </Box>
       </Flex>
     </div>
   )

@@ -38,11 +38,22 @@ function HistoryCard({ history, point, user }: HistoryCardProps) {
     }
   };
 
+
+const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
+    const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
+    const theme = point.id === history.pointId ? point.theme : ''
+    const author = point.userId === userID ? 
+    useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.username : '') :
+    useAppSelector((state) => state.client.username);
+    const client = point.clientId === history.clientId ? useAppSelector((state) => state.client.username) : (useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.username : ''))
+    
+
   return (
     <Box w="70%" borderWidth="1px" borderRadius="lg" overflow="hidden" p="4" mb="4" boxShadow="md">
       <Text fontSize="xl" fontWeight="semibold" mb="2">
         Тема разговора: {theme}
       </Text>
+
       <Flex alignItems="center" justifyContent="space-between">
         <Flex alignItems="center">
           <Text>Автор встречи: {author}</Text>
@@ -64,6 +75,7 @@ function HistoryCard({ history, point, user }: HistoryCardProps) {
               SVGstyle={{ display: 'inline' }}
             />
           </div>
+
         </Flex>
         <Badge colorScheme="green">{}</Badge>
       </Flex>

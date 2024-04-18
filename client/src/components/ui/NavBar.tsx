@@ -12,32 +12,41 @@ export default function NavBar(): JSX.Element {
     void dispatch(logOutThunk()).then(navigate('/signin'));
   };
   return (
-    <Box bg={useColorModeValue('gray.200', 'gray.900')} rounded="lg" px={4}>
+    <Box bg={useColorModeValue('#4F535E', 'gray.900')} rounded="lg" px={4}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <HStack spacing={6}>
-          <Box>Hi, {user.status === 'logged' ? user.username : 'guest'}</Box>
+          <Box color="#FDA065">Hi,</Box>
+          <Box color="#FDA065">{user.status === 'logged' ? user.username : 'guest'}</Box>
+          <Box color="#D4C6A9">
           <NavLink to="/addpoint" className={({ isActive }) => (isActive ? 'active' : '')}>
             Create
           </NavLink>
+          </Box>
+          <Box color="#D4C6A9">
           <NavLink to="/mappage" className={({ isActive }) => (isActive ? 'active' : '')}>
             Find
           </NavLink>
-          <NavLink to="/mappage2" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Find2
-          </NavLink>
+          </Box>
+          <Box color="#D4C6A9">
           <NavLink to='/userpage' className={({ isActive }) => (isActive ? 'active' : '')}>
             UserPage
           </NavLink>
+          </Box>
         </HStack>
         <HStack spacing={6}>
           {user.status !== 'logged' ? (
             <>
+
+          <Box color="#D4C6A9">
               <NavLink to="signin" className={({ isActive }) => (isActive ? 'active' : '')}>
                 signin
               </NavLink>
+              </Box>
+              <Box color="#D4C6A9">
               <NavLink to="signup" className={({ isActive }) => (isActive ? 'active' : '')}>
                 signup
               </NavLink>
+              </Box>
             </>
           ) : (
             <Button onClick={logoutHandler}>Выйти</Button>

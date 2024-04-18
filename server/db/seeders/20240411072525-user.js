@@ -8,16 +8,16 @@ module.exports = {
       [
         {
           username: "admin",
-          email: "admin@admin",
+          email: "admin@admin.ru",
           password: await bcrypt.hash("admin", 10),
           rating: 0,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          username: "1",
-          email: "1@1",
-          password: await bcrypt.hash("1", 10),
+          username: "one",
+          email: "one@one.ru",
+          password: await bcrypt.hash("one", 10),
           rating: 0,
           createdAt: new Date(),
           updatedAt: new Date(),
