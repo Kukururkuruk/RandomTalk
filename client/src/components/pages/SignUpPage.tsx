@@ -64,6 +64,7 @@ export default function SignUpPage(): JSX.Element {
                 name="username"
                 bg={useColorModeValue('gray.100', 'gray.900')}
                 color={useColorModeValue('current', 'white')}
+                required
               />
             </FormControl>
 
@@ -74,6 +75,7 @@ export default function SignUpPage(): JSX.Element {
                 name="email"
                 placeholder="Email"
                 bg={useColorModeValue('gray.100', 'gray.900')}
+                required
               />
             </FormControl>
 
@@ -84,6 +86,7 @@ export default function SignUpPage(): JSX.Element {
                 name="password"
                 placeholder="Password"
                 bg={useColorModeValue('gray.100', 'gray.900')}
+                required
               />
             </FormControl>
 

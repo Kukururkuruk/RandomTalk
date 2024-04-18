@@ -18,7 +18,7 @@ export default function MyMap(): JSX.Element {
   }, [dispatch]);
 
   const filteredPoints = points.filter(
-      (point) => !bans.some((ban) => ban.pointId === point.id && ban.userId === userId) && point.agreed === false && point.visibility === false
+      (point) => !bans.some((ban) => ban.pointId === point.id && ban.userId === userId) && point.agreed === false && point.visibility === true 
     );
     
 

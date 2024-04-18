@@ -76,6 +76,7 @@ export default function DismissItem({ point, index }: StudentItemProps): JSX.Ele
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               height={150}
+              required
             />
           </ModalBody>
           <ModalFooter>

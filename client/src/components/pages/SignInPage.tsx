@@ -54,6 +54,7 @@ export default function SignInPage(): JSX.Element {
                 placeholder="Email"
                 name="email"
                 bg={useColorModeValue('gray.100', 'gray.900')}
+                required
               />
             </FormControl>
 
@@ -64,6 +65,7 @@ export default function SignInPage(): JSX.Element {
                 name="password"
                 placeholder="Password"
                 bg={useColorModeValue('gray.100', 'gray.900')}
+                required
               />
             </FormControl>
 
