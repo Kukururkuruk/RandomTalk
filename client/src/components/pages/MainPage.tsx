@@ -12,17 +12,28 @@ export default function MainPage(): JSX.Element {
       </Box>
       <Box>
         <Heading fontSize="2xl">Аниме-кот бариста</Heading>
-        <Stack spacing={4} overflow="hidden" bg="white" borderRadius="lg" px={4} py={6}>
-          <Text className='p' fontSize="xl">Здравствуй пирожочек!</Text>
-          <Text className='p' fontSize="xl">Рад тебя видеть</Text>
-          <Text className='p' fontSize="xl">Заходи присаживайся или</Text>
-          <Text className='p' fontSize="xl">ты хочешь поискать с кем поговорить? <Text className="cursor" blinkAnimation={{ animation: 'blink 1s infinite ease-in-out' }}>|</Text></Text>
-        </Stack>
+
+        <div className="bubble grow left">
+          <Text className="p" fontSize="xl">
+            Здравствуй пирожочек!
+          </Text>
+          <Text className="p" fontSize="xl">
+            Рад тебя видеть
+          </Text>
+          <Text className="p" fontSize="xl">
+            Заходи присаживайся или
+          </Text>
+          <Text className="p" fontSize="xl">
+            ты хочешь поискать с кем поговорить?{' '}
+          </Text>
+        </div>
         <Flex gap={2} mt={4}>
-          <Button variant="solid" colorScheme="blue">
-            Посидеть
-          </Button>
-          <Button variant="outline">Поискать</Button>
+          <div className="container">
+            <button className="btn">Посидеть</button>
+          </div>
+          <div className="container">
+            <button className="btn">Поискать</button>
+          </div>
         </Flex>
       </Box>
     </Flex>
