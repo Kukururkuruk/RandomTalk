@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Box,
   Button,
-  Flex,
+  Grid,
+  GridItem,
   FormControl,
   FormLabel,
   Image,
@@ -10,27 +11,26 @@ import {
   Text,
   VStack,
   useColorModeValue,
+  Flex,
 } from '@chakra-ui/react';
 import { useAppDispatch } from '../../hooks/useReduxHook';
 import { signUpThunk } from '../../redux/thunkActions/authThunkActions';
 import { openModalWithError } from '../../redux/slices/modalSlice';
 import type { UserSignUpType } from '../../types/authType';
-import regCat from '../../../public/regCat.jpeg'
-// import { useNavigate } from 'react-router-dom';
+import regCat from '../../../public/regCat.jpeg'; // Make sure this path is correct
+import '../../../public/cat.css'
 
 export default function SignUpPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.currentTarget)) as UserSignUpType;
-    console.log('222');
 
     if (formData.password.length <= 2) {
       dispatch(
         openModalWithError(
-          'Ошибка регистрации! Пароль должен быть больше трех симоволов',
+          'Registration error! Password must be longer than three characters',
         ),
       );
       return;
@@ -39,63 +39,82 @@ export default function SignUpPage(): JSX.Element {
     void dispatch(signUpThunk(formData))
       .unwrap()
       .catch(() => {
-        console.log('111');
-        void dispatch(openModalWithError('Ошибка входа! Проверьте данные и повторите попытку'));
+        dispatch(openModalWithError('Login error! Check your data and try again'));
       });
   };
 
   return (
     <Flex justify="center" align="center" minHeight="100vh" p={12}>
-      <Flex direction={{ base: "column", md: "row" }} align="center" gap={10}>
-        <Box bg={useColorModeValue('white', 'gray.900')} w="lg" p={8} borderRadius="md" shadow="md">
-        <Image 
-            src={regCat}
-            alt="A cool cat" 
-            style={{ transform: 'scale(1.01)' }} 
-          />
-          <Text fontSize="2xl" fontWeight="bold" align="center" mb={4} color={useColorModeValue('gray.900', 'gray.100')}>
-            Sign Up
-          </Text>
+      <Box boxShadow="2xl" rounded="md" overflow="hidden">
+        <Grid
+          templateColumns={{ md: "repeat(2, minmax(0, 1fr))" }}
+          gap={10}
+          background="#4F535E"
+          alignItems="center" 
+        >
+         <GridItem
+    display="flex" // Enables flexbox properties for the image container
+    justifyContent="center" // Centers the image on the main-axis (horizontally)
+    alignItems="center" // Centers the image on the cross-axis (vertically)
+  >
+<div className="image-container">
+  <Image
+    src={regCat}
+    alt="A cool cat"
+    objectFit="cover"
+    width="100%"
+    maxWidth="400px"
+    paddingLeft="50px"
+    display={{ base: 'none', md: 'block' }}
+  />
+</div>
+  </GridItem>
+          <Box bg={useColorModeValue('#4F535E', 'gray.900')} p={8}>
+            <Text fontSize="2xl" fontWeight="bold" align="center" mb={4} color={useColorModeValue('#FDA065', 'white')}>
+              Sign Up
+            </Text>
+            <form onSubmit={submitHandler}>
+              <VStack spacing={4}>
+                <FormControl isRequired>
+                  <FormLabel color={useColorModeValue('#C9B7B7', 'gray.100')}>Name</FormLabel>
+                  <Input
+                    placeholder="Name"
+                    name="username"
+                    bg={useColorModeValue('C9B7B7', 'gray.900')}
+                    color="#AD574A" 
+                  />
+                </FormControl>
 
-        <form onSubmit={submitHandler}>
-          <VStack spacing={4}>
-            <FormControl isRequired>
-              <FormLabel color={useColorModeValue('gray.900', 'gray.100')}>Name</FormLabel>
-              <Input
-                placeholder="Name"
-                name="username"
-                bg={useColorModeValue('gray.100', 'gray.900')}
-                color={useColorModeValue('current', 'white')}
-              />
-            </FormControl>
+                <FormControl isRequired>
+                  <FormLabel color={useColorModeValue('#C9B7B7', 'gray.100')}>Email</FormLabel>
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Email@Email"
+                    bg={useColorModeValue('C9B7B7', 'gray.900')}
+                    color="#AD574A" 
+                  />
+                </FormControl>
 
-            <FormControl isRequired>
-              <FormLabel color={useColorModeValue('gray.900', 'gray.100')}>Email</FormLabel>
-              <Input
-                type="email"
-                name="email"
-                placeholder="Email"
-                bg={useColorModeValue('gray.100', 'gray.900')}
-              />
-            </FormControl>
+                <FormControl isRequired>
+                  <FormLabel color={useColorModeValue('#C9B7B7', 'gray.100')}>Password</FormLabel>
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    bg={useColorModeValue('C9B7B7', 'gray.900')}
+                    color="#AD574A" 
+                  />
+                </FormControl>
 
-            <FormControl isRequired>
-              <FormLabel color={useColorModeValue('gray.900', 'gray.100')}>Password</FormLabel>
-              <Input
-                type="password"
-                name="password"
-                placeholder="Password"
-                bg={useColorModeValue('gray.100', 'gray.900')}
-              />
-            </FormControl>
-
-            <Button type="submit" colorScheme="blue" w="full" mt={4}>
-              Create Account
-            </Button>
-          </VStack>
-        </form>
+                <Button type="submit" colorScheme="orange" w="full" mt={4} bgColor="#FDA065">
+                  Create Account
+                </Button>
+              </VStack>
+            </form>
+          </Box>
+        </Grid>
       </Box>
-      </Flex>
     </Flex>
   );
 }
