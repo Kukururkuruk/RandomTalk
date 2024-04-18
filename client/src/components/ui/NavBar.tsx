@@ -28,11 +28,6 @@ export default function NavBar(): JSX.Element {
           </NavLink>
           </Box>
           <Box color="#D4C6A9">
-          <NavLink to="/mappage2" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Find2
-          </NavLink>
-          </Box>
-          <Box color="#D4C6A9">
           <NavLink to='/userpage' className={({ isActive }) => (isActive ? 'active' : '')}>
             UserPage
           </NavLink>
