@@ -116,6 +116,7 @@ type HistoryCardProps = {
     point: PointType;
     user: UserStateType;
   };
+
 const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
   const [ratingValue, setRatingValue] = useState(0);
     const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
@@ -124,6 +125,7 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
     useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.username : '') :
     useAppSelector((state) => state.client.username);
     const client = point.clientId === history.clientId ? useAppSelector((state) => state.client.username) : (useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.username : ''))
+
     const handleRating = async (rate: number) => {
       setRatingValue(rate);
       console.log(point.clientId);
@@ -146,7 +148,9 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
       p="4"
       mb="4"
       boxShadow="md"
+
       width="700px"
+
     >
       <Text fontSize="xl" fontWeight="semibold" mb="2">
         Тема разговора: {theme}
