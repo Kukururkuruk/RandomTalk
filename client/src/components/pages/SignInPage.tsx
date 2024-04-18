@@ -14,7 +14,7 @@ import { useAppDispatch } from '../../hooks/useReduxHook';
 import { signInThunk } from '../../redux/thunkActions/authThunkActions';
 import type { UserSignInType } from '../../types/authType';
 import { openModalWithError } from '../../redux/slices/modalSlice';
-import '../../styles/animations.css'; // Стили для анимированного градиента
+import '../../styles/animations.css'; // Resolved conflict: keeping animations import
 
 export default function SignInPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -22,6 +22,13 @@ export default function SignInPage(): JSX.Element {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.currentTarget)) as UserSignInType;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      console.error('Invalid email format'); // Resolved conflict: logging error message
+      dispatch(openModalWithError('Неверный формат email'));
+      return;
+    }
 
     void dispatch(signInThunk(formData))
       .unwrap()
@@ -33,10 +40,10 @@ export default function SignInPage(): JSX.Element {
   return (
     <Flex
       justify="center"
-      align="center" // Вертикальное выравнивание
-      height="100vh" // Высота контейнера 100% видимой части экрана
-      className="body-gradient" // Применяем градиент ко всей странице
-      marginTop="-225px" // Поднимаем форму на 50 пикселей выше центра
+      align="center"
+      height="100vh"
+      className="body-gradient"
+      marginTop="-225px"
     >
       <Box bg={useColorModeValue('#4F535E', 'gray.900')} w="lg" p={8} borderRadius="md">
         <Text
@@ -44,7 +51,7 @@ export default function SignInPage(): JSX.Element {
           fontWeight="bold"
           align="center"
           mb={4}
-          color="#FDA065"  // Оранжевый цвет заголовка
+          color="#FDA065"
         >
           Sign In
         </Text>
@@ -56,8 +63,8 @@ export default function SignInPage(): JSX.Element {
                 type="email"
                 placeholder="Email"
                 name="email"
-                bg={useColorModeValue('C9B7B7', 'gray.900')}
-                color="#AD574A"  
+                bg={useColorModeValue('#C9B7B7', 'gray.900')} // Resolved conflict: keeping background color
+                color="#AD574A"
               />
             </FormControl>
 
@@ -68,7 +75,8 @@ export default function SignInPage(): JSX.Element {
                 name="password"
                 placeholder="Password"
                 bg={useColorModeValue('gray.100', 'gray.900')}
-                color="#AD574A"  
+                color="#AD574A"
+                required // Resolved conflict: keeping required attribute
               />
             </FormControl>
 
