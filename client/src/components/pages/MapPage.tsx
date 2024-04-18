@@ -51,7 +51,7 @@ export default function MapPage(): JSX.Element {
           mb={4}
           color={useColorModeValue('#FDA065', '')}
         >
-          Events
+          Активные точки
         </Text>
         <Box mt={3} p={4} maxH="400px"> 
           {filteredPoints?.map((point, index) => (
