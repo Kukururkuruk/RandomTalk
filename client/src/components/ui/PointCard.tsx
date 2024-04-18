@@ -108,7 +108,7 @@ export default function PointCard({ point, user }: PointCardProps) {
 
   if (point.userId === (user.status === 'logged' ? user.id : '')) {
     return (
-      <Card border="2px" borderColor={point.status === true ? 'green' : 'gray'} display={point.visibility===false ? "none" : "block"}>
+      <Card border="2px" borderColor={point.status === true ? 'green' : 'gray'} display={point.visibility===false ? "none" : "flex"}>
         <CardBody>
           <Text>Тема разговора: {point.theme}</Text>
           <br />
