@@ -27,10 +27,11 @@ export default function SignUpPage(): JSX.Element {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.currentTarget)) as UserSignUpType;
 
-    if (formData.password.length <= 2) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
       dispatch(
         openModalWithError(
-          'Registration error! Password must be longer than three characters',
+          'Ошибка регистрации! Проверьте формат email',
         ),
       );
       return;
@@ -39,7 +40,7 @@ export default function SignUpPage(): JSX.Element {
     void dispatch(signUpThunk(formData))
       .unwrap()
       .catch(() => {
-        dispatch(openModalWithError('Login error! Check your data and try again'));
+        void dispatch(openModalWithError('Ошибка регистрации! Проверьте данные и повторите попытку'));
       });
   };
 

@@ -47,6 +47,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: true,
       },
+      visibility: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

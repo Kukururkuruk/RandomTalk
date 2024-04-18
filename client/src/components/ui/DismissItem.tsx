@@ -45,63 +45,65 @@ export default function DismissItem({ point, index }: StudentItemProps): JSX.Ele
     setReason('');
   };
 
+  const backgroundColor = useColorModeValue('#FDA065', 'gray.600');
+  const hoverBackgroundColor = useColorModeValue('gray.100', 'gray.600');
+
   return (
-<>
-  <Box display="flex" flexDirection="column">
-    <Box
-      display="flex"
-      justifyContent="space-between"
-      p={2}
-      rounded="md"
-      alignItems="center"
-      transition="all .3s ease"
-      _hover={{
-        backgroundColor: useColorModeValue('#FDA065', 'gray.600'),
-      }}
-    >
-<Text
-  color="#AD574A"
-  fontWeight="bold"
-  _hover={{ color: "#FDA065" }}
->
-  {point.theme}
-</Text>
+    <>
+      <Box display={point.visibility === false ? "none" : "flex"} flexDirection="column">
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          p={2}
+          rounded="md"
+          alignItems="center"
+          transition="all .3s ease"
+          _hover={{
+            backgroundColor: hoverBackgroundColor,
+          }}
+        >
+          <Text
+            color="#AD574A"
+            fontWeight="bold"
+            _hover={{ color: backgroundColor }}
+          >
+            {index + 1}. {point.theme}
+          </Text>
 
-      <Button
-  color="#FDA065"
-  onClick={handleButtonClick}
-  bg="#4F535E"
-  _hover={{ bg: "#4F535E" }}
->
-  Отправить
-</Button>
-    </Box>
-    <Box p={2} rounded="md" boxShadow="md" mt={2} />
-  </Box>
-  <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-    <ModalOverlay />
-    <ModalContent width={700}>
-      <ModalHeader>Введите свою внешность, через сколько будете и т.д.</ModalHeader>
-      <ModalCloseButton />
-      <ModalBody>
-        <Input
-          placeholder="Введите вашу информацию"
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          height={150}
-        />
-      </ModalBody>
-      <ModalFooter>
-        <Button color="#FDA065" mr={3} onClick={handleConfirm}>
-          Подтвердить
-        </Button>
-        <Button variant="ghost" onClick={handleCloseModal}>
-          Закрыть
-        </Button>
-      </ModalFooter>
-    </ModalContent>
-  </Modal>
-</>
-
+          <Button
+            colorScheme="whatsapp"
+            onClick={handleButtonClick}
+            bg="#4F535E"
+            _hover={{ bg: "#4F535E" }}
+          >
+            Отправить
+          </Button>
+        </Box>
+        <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+          <ModalOverlay />
+          <ModalContent width={700}>
+            <ModalHeader>Введите свою внешность, через сколько будете и т.д.</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Input
+                placeholder="Введите вашу информацию"
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
+                height={150}
+                required
+              />
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={handleConfirm}>
+                Подтвердить
+              </Button>
+              <Button variant="ghost" onClick={handleCloseModal}>
+                Закрыть
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Box>
+    </>
   );
 }
