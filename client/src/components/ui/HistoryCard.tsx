@@ -24,7 +24,7 @@ function HistoryCard({ history, point, user }: HistoryCardProps) {
   const client =
     point.clientId === history.clientId ? useAppSelector((state) => state.client.username) : '';
 
-  const handleRating = async (rate: number, ) => {
+  const handleRating = async (rate: number) => {
     setRatingValue(rate);
     console.log(point.clientId);
     console.log(rate);
@@ -38,49 +38,64 @@ function HistoryCard({ history, point, user }: HistoryCardProps) {
     }
   };
 
+  function HistoryCard({ history, point, user }: HistoryCardProps) {
+    const userID = useAppSelector((state) =>
+      state.auth.user.status === 'logged' ? state.auth.user.id : '',
+    );
+    const theme = point.id === history.pointId ? point.theme : '';
+    const author =
+      point.userId === userID
+        ? useAppSelector((state) =>
+            state.auth.user.status === 'logged' ? state.auth.user.username : '',
+          )
+        : useAppSelector((state) => state.client.username);
+    const client =
+      point.clientId === history.clientId
+        ? useAppSelector((state) => state.client.username)
+        : useAppSelector((state) =>
+            state.auth.user.status === 'logged' ? state.auth.user.username : '',
+          );
 
-const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
-    const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
-    const theme = point.id === history.pointId ? point.theme : ''
-    const author = point.userId === userID ? 
-    useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.username : '') :
-    useAppSelector((state) => state.client.username);
-    const client = point.clientId === history.clientId ? useAppSelector((state) => state.client.username) : (useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.username : ''))
-    
+    return (
+      <Box
+        w="70%"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        p="4"
+        mb="4"
+        boxShadow="md"
+      >
+        <Text fontSize="xl" fontWeight="semibold" mb="2">
+          Тема разговора: {theme}
+        </Text>
 
-  return (
-    <Box w="70%" borderWidth="1px" borderRadius="lg" overflow="hidden" p="4" mb="4" boxShadow="md">
-      <Text fontSize="xl" fontWeight="semibold" mb="2">
-        Тема разговора: {theme}
-      </Text>
-
-      <Flex alignItems="center" justifyContent="space-between">
-        <Flex alignItems="center">
-          <Text>Автор встречи: {author}</Text>
-          <Text>Собеседник: {client}</Text>
-          <div>
-            <Rating
-              onClick={handleRating}
-              size={50}
-              transition
-              showTooltip
-              tooltipArray={[
-                'ОТКРОЙТЕ ФОРТОЧКУ',
-                'Чуть душно',
-                'Норм',
-                'Приятный собеседник',
-                'Ля какой',
-              ]}
-              fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
-              SVGstyle={{ display: 'inline' }}
-            />
-          </div>
-
+        <Flex alignItems="center" justifyContent="space-between">
+          <Flex alignItems="center">
+            <Text>Автор встречи: {author}</Text>
+            <Text>Собеседник: {client}</Text>
+            <div>
+              <Rating
+                onClick={handleRating}
+                size={50}
+                transition
+                showTooltip
+                tooltipArray={[
+                  'ОТКРОЙТЕ ФОРТОЧКУ',
+                  'Чуть душно',
+                  'Норм',
+                  'Приятный собеседник',
+                  'Ля какой',
+                ]}
+                fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
+                SVGstyle={{ display: 'inline' }}
+              />
+            </div>
+          </Flex>
+          <Badge colorScheme="green">{}</Badge>
         </Flex>
-        <Badge colorScheme="green">{}</Badge>
-      </Flex>
-    </Box>
-  );
+      </Box>
+    );
+  }
 }
-
 export default HistoryCard;
