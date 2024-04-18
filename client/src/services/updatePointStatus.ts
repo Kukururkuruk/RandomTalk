@@ -10,6 +10,14 @@ class UpdateStatusPointService {
         return this.ApiService.put<AxiosResponse>(`/points/status/${id}`).then((res) => res)
     }
 
+    public updateStatusFalse(id: PointType['id']):Promise<AxiosResponse> {
+        return this.ApiService.put<AxiosResponse>(`/points/status/false/${id}`).then((res) => res)
+    }
+
+    public updateVisibilityFalse(id: PointType['id']):Promise<AxiosResponse> {
+        return this.ApiService.put<AxiosResponse>(`/points/status/visibility/${id}`).then((res) => res)
+    }
+
     public updateClient(point: UpdatePointType): Promise<UpdatePointType> {
         return this.ApiService.put<UpdatePointType>(`/points/status/client/${point.id}`, { clientId: point.clientId, reason: point.reason })
           .then((res) => res.data);

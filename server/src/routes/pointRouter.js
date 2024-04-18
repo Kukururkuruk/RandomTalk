@@ -8,5 +8,6 @@ apiPointRouter.route("/").get(async (req, res) => {
   res.json(points);
 });
 
+
 module.exports = apiPointRouter;
 

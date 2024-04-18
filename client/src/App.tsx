@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, NavLink, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { NavLink, RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom';
 import { Box, Center, Heading, Text } from '@chakra-ui/react';
 import MainPage from './components/pages/MainPage';
 import Root from './components/Root';

@@ -1,13 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { AddFormPointType } from '../../types/PointType';
+import type { AddFormPointType, BanType } from '../../types/PointType';
 import addPointService from '../../services/addPointService';
 
-const addPointThunk = createAsyncThunk(
-    'points/addThunk',
-    async (formData: AddFormPointType) => {
-      const result = await addPointService.addPoint(formData);
-      return result;
-    },
-  );
+export const addPointThunk = createAsyncThunk(
+  'points/addThunk',
+  async (formData: AddFormPointType) => {
+    const result = await addPointService.addPoint(formData);
+    return result;
+  },
+);
 
-export default addPointThunk;
+export const banPointThunk = createAsyncThunk('point/ban', async (formData: BanType) => {
+  const result = await addPointService.banPoint(formData);
+  return result;
+});
+
+export const getBansThunk = createAsyncThunk<BanType[]>('points/getBans', async () => {
+  const result = await addPointService.getBans();
+  return result;
+});

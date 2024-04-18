@@ -10,8 +10,10 @@ const authRouter = require('./routes/authRouter');
 const tokensRouter = require('./routes/tokensRouter');
 const PointRouter = require('./routes/pointRouter');
 const changeStatusRouter = require('./routes/changeStatusRouter');
+const apiBanPointRouter = require('./routes/banPointRouter');
 const getClientRouter = require('./routes/getClientRouter');
 const historyRouter = require('./routes/historyRouter');
+
 
 require('dotenv').config();
 
@@ -37,7 +39,8 @@ app.use('/api/tokens', tokensRouter);
 app.use('/api/point', PointRouter);
 app.use('/api/points', AddPointRouter);
 app.use('/api/points/delete', DeletePointRouter);
-app.use('/api/points/status', changeStatusRouter);
+app.use('/api/points/status', changeStatusRouter)
+app.use('/api/point/ban', apiBanPointRouter);
 
 io.on('connection', (socket) => {
   console.log('A user connected');

@@ -14,21 +14,19 @@ import { useAppDispatch } from '../../hooks/useReduxHook';
 import { signUpThunk } from '../../redux/thunkActions/authThunkActions';
 import { openModalWithError } from '../../redux/slices/modalSlice';
 import type { UserSignUpType } from '../../types/authType';
-// import { useNavigate } from 'react-router-dom';
 
 export default function SignUpPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.currentTarget)) as UserSignUpType;
-    console.log('222');
 
-    if (formData.password.length <= 2) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
       dispatch(
         openModalWithError(
-          'Ошибка регистрации! Пароль должен быть больше трех симоволов',
+          'Ошибка регистрации! Проверьте формат email',
         ),
       );
       return;
@@ -37,8 +35,7 @@ export default function SignUpPage(): JSX.Element {
     void dispatch(signUpThunk(formData))
       .unwrap()
       .catch(() => {
-        console.log('111');
-        void dispatch(openModalWithError('Ошибка входа! Проверьте данные и повторите попытку'));
+        void dispatch(openModalWithError('Ошибка регистрации! Проверьте данные и повторите попытку'));
       });
   };
 
@@ -64,6 +61,7 @@ export default function SignUpPage(): JSX.Element {
                 name="username"
                 bg={useColorModeValue('gray.100', 'gray.900')}
                 color={useColorModeValue('current', 'white')}
+                required
               />
             </FormControl>
 
@@ -74,6 +72,7 @@ export default function SignUpPage(): JSX.Element {
                 name="email"
                 placeholder="Email"
                 bg={useColorModeValue('gray.100', 'gray.900')}
+                required
               />
             </FormControl>
 
@@ -84,6 +83,7 @@ export default function SignUpPage(): JSX.Element {
                 name="password"
                 placeholder="Password"
                 bg={useColorModeValue('gray.100', 'gray.900')}
+                required
               />
             </FormControl>
 
