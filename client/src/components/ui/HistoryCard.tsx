@@ -12,9 +12,10 @@ type HistoryCardProps = {
   };
 
 const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
+    const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
     const theme = point.id === history.pointId ? point.theme : ''
-    const author = point.userId === history.userId ? (user.status === "logged" ? user.username : '') : ''
-    const client = point.clientId === history.clientId ? useAppSelector((state) => state.client.username) : ''
+    const author = point.userId === userID ? (user.status === "logged" ? user.username : '') : useAppSelector((state) => state.client.username)
+    const client = point.clientId === history.clientId ? useAppSelector((state) => state.client.username) : (user.status === "logged" ? user.username : '')
     
   return (
     <Box
