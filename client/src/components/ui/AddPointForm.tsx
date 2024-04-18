@@ -15,17 +15,17 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
     const formData = Object.fromEntries(new FormData(event.currentTarget)) as unknown as AddFormPointType;
 
     // Проверка наличия специальных символов в значениях
-    const regex = /[^\w\s]/;
-    for (const key in formData) {
-      if (Object.prototype.hasOwnProperty.call(formData, key)) {
-        const value = formData[key];
-        if (regex.test(value)) {
-          console.error(`Invalid input for ${key}`);
-          dispatch(openModalWithError(`Неверные данные для ${key}`));
-          return;
-        }
-      }
-    }
+    // const regex = /[^\w\s]/;
+    // for (const key in formData) {
+    //   if (Object.prototype.hasOwnProperty.call(formData, key)) {
+    //     const value = formData[key];
+    //     if (regex.test(value)) {
+    //       console.error(`Invalid input for ${key}`);
+    //       dispatch(openModalWithError(`Неверные данные для ${key}`));
+    //       return;
+    //     }
+    //   }
+    // }
 
     if (!initialCoordinates || !initialCoordinates.length || initialCoordinates.length !== 2 || isNaN(initialCoordinates[0]) || isNaN(initialCoordinates[1])) {
       console.error('Invalid initialCoordinates');

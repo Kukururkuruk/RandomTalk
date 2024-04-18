@@ -22,6 +22,7 @@ export default function UserPage({}: Props) {
 
   console.log(histories);
   
+console.log(user.status === "logged" ? user.rating : "");
 
   return (
     <div style={{ backgroundColor: 'FDA065', padding: '40px', borderRadius: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
