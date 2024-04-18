@@ -78,7 +78,6 @@ export default function SignInPage(): JSX.Element {
                 color="#AD574A"
               />
             </FormControl>
-
             <Button type="submit" colorScheme="orange" w="full" mt={4} bgColor="#FDA065">
               Sign in
             </Button>
