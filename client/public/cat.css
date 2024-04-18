@@ -130,6 +130,10 @@
   overflow: hidden;
 }
 
+.image-container {
+  margin: auto;
+  display: flex;
+}
 /* #quote {
   color: #25fd01;
   font: 400 2em consolas;

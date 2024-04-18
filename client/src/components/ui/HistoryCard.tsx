@@ -98,4 +98,7 @@ function HistoryCard({ history, point, user }: HistoryCardProps) {
     );
   }
 }
+
+}
+
 export default HistoryCard;
