@@ -36,7 +36,6 @@ export default function MapPage(): JSX.Element {
   );
 
   const checkNotifications = () => {
-
     if (filteredPoints.length > 0) {
       toast.info(`You have ${filteredPoints.length} new dismiss points!`);
     }
@@ -44,23 +43,23 @@ export default function MapPage(): JSX.Element {
 
   return (
     <Flex justify="center">
-      <Box bg={useColorModeValue('', 'gray.900')} w="lg" p={8} borderRadius="md">
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} w="lg" p={8} borderRadius="md">
         <Text
-          fontSize="2xl"
+          fontSize="3xl"
           fontWeight="bold"
           align="center"
           mb={4}
-          color={useColorModeValue('gray.900', 'gray.100')}
+          color={useColorModeValue('#FDA065', '')}
         >
-          Dismiss
+          Events
         </Text>
-        <Box mt={3} p={4} maxH="400px">
+        <Box mt={3} p={4} maxH="400px"> 
           {filteredPoints?.map((point, index) => (
             <DismissItem key={point.id} index={index} point={point} />
           ))}
         </Box>
       </Box>
-      <Box>
+      <Box width="1080px" height="600px" ml="50px">
         <MyMap />
       </Box>
     </Flex>
