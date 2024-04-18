@@ -22,7 +22,7 @@ export default function MapPage(): JSX.Element {
       void dispatch(getPointsThunk());
       void dispatch(getBansThunk());
       checkNotifications();
-    }, 3000);
+    }, 2000);
 
     setRefreshInterval(intervalId);
 
@@ -32,7 +32,7 @@ export default function MapPage(): JSX.Element {
   }, []);
 
   const filteredPoints = points.filter(
-    (point) => !bans.some((ban) => ban.pointId === point.id && ban.userId === userID) && point.agreed === false
+    (point) => !bans.some((ban) => ban.pointId === point.id && ban.userId === userID) && point.agreed === false && point.userId !== userID
   );
 
   const checkNotifications = () => {
