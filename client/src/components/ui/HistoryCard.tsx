@@ -38,5 +38,5 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
     </Box>
   );
 };
-
+ 
 export default HistoryCard;
