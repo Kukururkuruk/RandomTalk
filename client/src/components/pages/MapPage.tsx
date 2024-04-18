@@ -5,7 +5,6 @@ import DismissItem from '../ui/DismissItem';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
 import MyMap from '../ui/Map';
 import { getBansThunk } from '../../redux/thunkActions/addPointThunk';
-import { toast } from 'react-toastify';
 
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
