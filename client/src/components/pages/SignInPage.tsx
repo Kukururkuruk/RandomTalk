@@ -14,21 +14,25 @@ import { useAppDispatch } from '../../hooks/useReduxHook';
 import { signInThunk } from '../../redux/thunkActions/authThunkActions';
 import type { UserSignInType } from '../../types/authType';
 import { openModalWithError } from '../../redux/slices/modalSlice';
-// import { useNavigate } from 'react-router-dom';
 
 export default function SignInPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate()
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.currentTarget)) as UserSignInType;
-    console.log('222');
+
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      console.error('Invalid email format');
+      dispatch(openModalWithError('Неверный формат email'));
+      return;
+    }
 
     void dispatch(signInThunk(formData))
       .unwrap()
       .catch(() => {
-        console.log('111');
         void dispatch(openModalWithError('Ошибка входа! Проверьте данные и повторите попытку'));
       });
   };
