@@ -12,14 +12,14 @@ export default function Root(): JSX.Element {
         <Outlet />
       </Box>
       <ErrorModal />
-      <Box as="footer" width="full" bg="gray.200" p={4}>
+      <Box as="footer" width="full" bg="#4F535E" p={3} borderTopRadius="lg">
         <Flex justify="center" align="center">
           <VStack>
-            <Text>&copy; {new Date().getFullYear()} Your Site Name. All rights reserved.</Text>
+            <Text color="#D4C6A9">&copy; {new Date().getFullYear()} RandomTalk. All rights reserved.</Text>
             <Flex gap={4}>
-              <Link href="#" isExternal>Privacy Policy</Link>
-              <Link href="#" isExternal>Terms of Service</Link>
-              <Link href="#" isExternal>Contact Us</Link>
+              <Link href="#" isExternal color="#FDA065">Команда</Link>
+              <Link href="#" isExternal color="#FDA065">Стак технологий</Link>
+              <Link href="#" isExternal color="#FDA065">tg:@RandomTalkTeam</Link>
             </Flex>
           </VStack>
         </Flex>

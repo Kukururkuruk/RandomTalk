@@ -22,27 +22,26 @@ export default function MapPage(): JSX.Element {
   );
 
   return (
-    <Flex justify="center">
-      <Box bg={useColorModeValue('', 'gray.900')} w="lg" p={8} borderRadius="md">
-        <Text
-          fontSize="2xl"
-          fontWeight="bold"
-          align="center"
-          mb={4}
-          color={useColorModeValue('gray.900', 'gray.100')}
-        >
-          Dismiss
-        </Text>
-        <Box mt={3} p={4} maxH="400px"> 
-          {filteredPoints?.map((point, index) => (
-            <DismissItem key={point.id} index={index} point={point} />
-          ))}
-        </Box>
-      </Box>
-      <Box>
-      <MyMap/>
-</Box>
-
-    </Flex>
+<Flex justify="center" mt="100px">
+  <Box bg={useColorModeValue('gray.100', 'gray.900')} w="lg" p={8} borderRadius="md" bg="#4F535E">
+    <Text
+      fontSize="3xl"
+      fontWeight="bold"
+      align="center"
+      mb={4}
+      color={useColorModeValue('#FDA065', '')}
+    >
+      Events
+    </Text>
+    <Box mt={3} p={4} maxH="400px"> 
+      {filteredPoints?.map((point, index) => (
+        <DismissItem key={point.id} index={index} point={point} />
+      ))}
+    </Box>
+  </Box>
+  <Box width="1080px" height="600px" ml="50px">
+    <MyMap/>
+  </Box>
+</Flex>
   );
 }

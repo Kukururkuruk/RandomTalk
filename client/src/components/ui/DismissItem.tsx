@@ -13,7 +13,7 @@ import {
   ModalCloseButton,
   Input,
 } from '@chakra-ui/react';
-import { PointType } from '../../types/PointType';
+import type { PointType } from '../../types/PointType';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import { updateClientPointThunk, updateStatusPointThunk } from '../../redux/thunkActions/updatePointThunk';
 
@@ -46,47 +46,62 @@ export default function DismissItem({ point, index }: StudentItemProps): JSX.Ele
   };
 
   return (
-    <>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        p={2}
-        rounded="md"
-        alignItems="center"
-        transition="all .3s ease"
-        _hover={{
-          backgroundColor: useColorModeValue('gray.100', 'gray.600'),
-        }}
-      >
-        <Text>{index + 1}</Text>
-        <Text>{point.theme}</Text>
-        <Button colorScheme="whatsapp" onClick={handleButtonClick}>
-          Отправить
+<>
+  <Box display="flex" flexDirection="column">
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      p={2}
+      rounded="md"
+      alignItems="center"
+      transition="all .3s ease"
+      _hover={{
+        backgroundColor: useColorModeValue('#FDA065', 'gray.600'),
+      }}
+    >
+<Text
+  color="#AD574A"
+  fontWeight="bold"
+  _hover={{ color: "#FDA065" }}
+>
+  {point.theme}
+</Text>
+
+      <Button
+  color="#FDA065"
+  onClick={handleButtonClick}
+  bg="#4F535E"
+  _hover={{ bg: "#4F535E" }}
+>
+  Отправить
+</Button>
+    </Box>
+    <Box p={2} rounded="md" boxShadow="md" mt={2} />
+  </Box>
+  <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+    <ModalOverlay />
+    <ModalContent width={700}>
+      <ModalHeader>Введите свою внешность, через сколько будете и т.д.</ModalHeader>
+      <ModalCloseButton />
+      <ModalBody>
+        <Input
+          placeholder="Введите вашу информацию"
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          height={150}
+        />
+      </ModalBody>
+      <ModalFooter>
+        <Button color="#FDA065" mr={3} onClick={handleConfirm}>
+          Подтвердить
         </Button>
-      </Box>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <ModalOverlay />
-        <ModalContent width={700}>
-          <ModalHeader>Введите свою внешность, через сколько будете и т.д.</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Input
-              placeholder="Введите вашу информацию"
-              value={reason}
-              onChange={(e) => setReason(e.target.value)}
-              height={150}
-            />
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleConfirm}>
-              Подтвердить
-            </Button>
-            <Button variant="ghost" onClick={handleCloseModal}>
-              Закрыть
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
+        <Button variant="ghost" onClick={handleCloseModal}>
+          Закрыть
+        </Button>
+      </ModalFooter>
+    </ModalContent>
+  </Modal>
+</>
+
   );
 }
