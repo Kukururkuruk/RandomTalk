@@ -40,4 +40,10 @@ export type MapInitState = {
   error: string | undefined,
 };
 
+export type RatingType = {
+  id: number,
+  userId: number,
+  rating: number,
+};
+
 

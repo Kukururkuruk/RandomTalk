@@ -5,7 +5,6 @@ import DismissItem from '../ui/DismissItem';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
 import MyMap from '../ui/Map';
 import { getBansThunk } from '../../redux/thunkActions/addPointThunk';
-import { toast } from 'react-toastify';
 
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -51,7 +50,7 @@ export default function MapPage(): JSX.Element {
           mb={4}
           color={useColorModeValue('#FDA065', '')}
         >
-          Events
+          Активные точки
         </Text>
         <Box mt={3} p={4} maxH="400px"> 
           {filteredPoints?.map((point, index) => (
