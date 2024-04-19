@@ -17,9 +17,7 @@ export default function Root(): JSX.Element {
           <VStack>
             <Text color="#D4C6A9">&copy; {new Date().getFullYear()} RandomTalk. All rights reserved.</Text>
             <Flex gap={4}>
-              <Link href="#" isExternal color="#FDA065">Команда</Link>
-              <Link href="#" isExternal color="#FDA065">Стак технологий</Link>
-              <Link href="#" isExternal color="#FDA065">tg:@RandomTalkTeam</Link>
+              <Link href="https://forms.gle/CPApS28ui8SVCo9Z8" isExternal color="#FDA065">Тех. Поддержка</Link>
             </Flex>
           </VStack>
         </Flex>

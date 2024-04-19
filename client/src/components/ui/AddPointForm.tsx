@@ -1,9 +1,9 @@
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useReduxHook';
 import type { AddFormPointType } from '../../types/PointType';
 import { addPointThunk } from '../../redux/thunkActions/addPointThunk';
-import { useNavigate } from 'react-router-dom';
 import { openModalWithError } from '../../redux/slices/modalSlice';
 
 export default function CharacterAddForm({ initialCoordinates, initialGif }: { initialCoordinates?: [number, number], initialGif: string }): JSX.Element {
@@ -53,7 +53,7 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
       ...formData,
       longitude,
       latitude,
-      img: initialGif ? initialGif : null,
+      img: initialGif || null,
     };
 
     await dispatch(addPointThunk(updatedFormData as AddFormPointType));
