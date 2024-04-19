@@ -107,7 +107,13 @@
   background-size: 400% 400%; /* Updated size */
   animation: AnimationName 22s ease infinite; /* New animation details */
 }
- 
+
+#root > div {
+  background: linear-gradient(0deg, #fda065, #4f535e); /* New gradient direction and colors */
+  background-size: 400% 400%; /* Updated size */
+  animation: AnimationName 22s ease infinite; /* New animation details */
+}
+
 /* Standard syntax */
 @keyframes AnimationName {
   0% { background-position: 47% 0%; }
