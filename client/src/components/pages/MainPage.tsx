@@ -7,14 +7,16 @@ import { useAppSelector } from '../../hooks/useReduxHook';
 export default function MainPage(): JSX.Element {
   const user = useAppSelector((state) => state.auth.user);
   return (
-    <Flex justifyContent="center" alignItems="center" gap={4}>
+    <Flex justifyContent="center" alignItems="center" gap={4} marginTop="100px">
       <Box>
-        <Box w="300px" h="300px" overflow="hidden">
+        <Box w="300px" h="300px" overflow="hidden" borderRadius="md">
           <img src={cat} alt="Котик бариста" style={{ objectFit: 'cover' }} />
         </Box>
       </Box>
+      <Box marginTop="10px" bg="#4F535E" borderRadius="md" p={4}>
+        <Heading fontSize="2xl" textColor="#FDA065">Бариста Кот: Ток Рандомич</Heading>
       {user.status === 'logged' ?(<Box>
-        <Heading fontSize="2xl">Бариста Кот: Ток Рандомич</Heading>
+
 
         <div className="bubble grow left">
           <Text className="p" fontSize="xl">

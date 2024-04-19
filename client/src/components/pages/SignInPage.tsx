@@ -63,7 +63,7 @@ export default function SignInPage(): JSX.Element {
                 type="email"
                 placeholder="Email"
                 name="email"
-                bg={useColorModeValue('gray.100', 'gray.900')} // Resolved conflict: keeping background color
+                bg={useColorModeValue('C9B7B7', 'gray.900')}
                 color="#AD574A"
               />
             </FormControl>
@@ -74,7 +74,7 @@ export default function SignInPage(): JSX.Element {
                 type="password"
                 name="password"
                 placeholder="Password"
-                bg={useColorModeValue('gray.100', 'gray.900')}
+                bg={useColorModeValue('C9B7B7', 'gray.900')}
                 color="#AD574A"
                 required // Resolved conflict: keeping required attribute
               />
