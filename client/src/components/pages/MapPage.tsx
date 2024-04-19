@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue, usePinInputContext } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useReduxHook';
 import DismissItem from '../ui/DismissItem';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
@@ -36,7 +36,7 @@ export default function MapPage(): JSX.Element {
 
   return (
     <Flex justify="center">
-      <Box bg={useColorModeValue('#4F535E', 'gray.900')} w="lg" p={8} borderRadius="md" bgImage={paperbg}>
+      <Box bg={useColorModeValue('#4F535E', 'gray.900')} w="lg" p={8} borderRadius="md" bg="#4F535E" marginTop="50px">
 
         <Text
           fontSize="3xl"

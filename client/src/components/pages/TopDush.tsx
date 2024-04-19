@@ -12,7 +12,7 @@ export default function TopDush(): JSX.Element {
                   <Flex alignContent='center' textAlign='center'>
                     <Box ml={4} flexGrow={1} display="flex">
                       <img src={crown} width="50px"/>
-                      <Text fontWeight="bold">{`1 место -  НикитосДушныйНос`}</Text> <br />
+                      <Text fontWeight="bold">{`1 место - НикитосДушныйНос`}</Text> <br />
                       <img src={crown} width="50px"/>
                     </Box>
                     <Text ml={4}>0.1111</Text>
