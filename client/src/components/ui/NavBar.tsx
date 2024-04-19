@@ -18,32 +18,37 @@ export default function NavBar(): JSX.Element {
         {user.status !== 'logged' ? (
           <HStack spacing={6}>
             <Box color="#D4C6A9">
-            <NavLink to="/signin" className={({ isActive }) => (isActive ? 'active' : '')}>Sign In</NavLink>
+            <NavLink to="/signin" className={({ isActive }) => (isActive ? 'active' : '')}>Логин</NavLink>
             </Box>
             <Box color="#D4C6A9">
-            <NavLink to="/signup" className={({ isActive }) => (isActive ? 'active' : '')}>Sign Up</NavLink>
+            <NavLink to="/signup" className={({ isActive }) => (isActive ? 'active' : '')}>Регистрация</NavLink>
             </Box>
           </HStack>
         ) : (
           <HStack spacing={6} justifyContent="center">
-            <Box color="#FDA065">Hi,</Box>
+            <Box color="#FDA065">Приветик,</Box>
             <Box color="#FDA065">{user.username}</Box>
             <Box color="#D4C6A9">
               <NavLink to="/addpoint" className={({ isActive }) => (isActive ? 'active' : '')}>
-                Create
+                Предложить тему
               </NavLink>
             </Box>
             <Box color="#D4C6A9">
               <NavLink to="/mappage" className={({ isActive }) => (isActive ? 'active' : '')}>
-                Find
+                Найти
               </NavLink>
             </Box>
             <Box color="#D4C6A9">
               <NavLink to='/userpage' className={({ isActive }) => (isActive ? 'active' : '')}>
-                UserPage
+                Личная страничка
               </NavLink>
             </Box>
-            <Button onClick={logoutHandler}>Log Out</Button>
+            <Box color="#D4C6A9">
+              <NavLink to='/top' className={({ isActive }) => (isActive ? 'active' : '')}>
+                ТОООООООП ДУШНИЛ!
+              </NavLink>
+            </Box>
+            <Button onClick={logoutHandler}>Выйти</Button>
           </HStack>
         )}
       </Flex>
