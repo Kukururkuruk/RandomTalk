@@ -29,9 +29,9 @@ const mapSlice = createSlice({
 
       }
     });
-
     builder.addCase(getUsersThunk.fulfilled, (state, action) => {
       state.allUsers = action.payload;
+      state.isLoading = false
     });
 
     builder

@@ -111,6 +111,7 @@ import { UserStateType } from '../../types/authType';
 import { HistoryType } from '../../types/historyType';
 import { useAppSelector } from '../../hooks/useReduxHook';
 import ratingPointService from '../../services/ratingService';
+import paperbg from '../../../public/paperbg.jpg'
 type HistoryCardProps = {
     history: HistoryType;
     point: PointType;
@@ -148,17 +149,18 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
       p="4"
       mb="4"
       boxShadow="md"
-
+      color="#000000"
+      bgImage={paperbg}
       width="700px"
 
     >
-      <Text fontSize="xl" fontWeight="semibold" mb="2">
+      <Text fontSize="xl" fontWeight="semibold" mb="2" >
         Тема разговора: {theme}
       </Text>
       <Flex alignItems="center" justifyContent="center" >
         <Flex alignItems="center" flexDirection="column">
-          <Text>{author}</Text>
-          <Text>{client}</Text>
+          <Text>Создатель: {author}</Text>
+          <Text>Собеседник: {client}</Text>
           <div>
               <Rating
                 onClick={handleRating}

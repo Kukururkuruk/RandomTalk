@@ -26,7 +26,7 @@ console.log(user.status === "logged" ? user.rating : "");
 
   return (
     <div style={{ backgroundColor: 'FDA065', padding: '40px', borderRadius: '10px', color: '#fff', fontFamily: 'sans-serif' }}>
-      <div style={{ fontSize: '28px', marginBottom: '30px', textAlign: 'center' }}>Здравствуй, {user.status === 'logged' ? user.username : 'Guest'} !</div>
+      <div style={{ fontSize: '28px', marginBottom: '30px', textAlign: 'center', border: 'dashed 3px white', width: "max-content", margin: "auto"}}>Здравствуй, {user.status === 'logged' ? user.username : 'Guest'} !</div>
       <WrapItem justifyContent="center">
         <Text>Ваш рейтинг: {user.status === "logged" ? user.rating : ""} <i className="fa-solid fa-star"></i> </Text>
       </WrapItem>
