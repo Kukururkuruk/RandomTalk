@@ -28,9 +28,9 @@ function App(): JSX.Element {
     {
       path: '/',
       element: (
-        // <LoaderProvider isLoading={status === 'pending'}>
+        <LoaderProvider isLoading={status === 'pending'}>
           <Root />
-        // </LoaderProvider>
+        </LoaderProvider>
       ),
       errorElement: (
         <Center h="100vh">

@@ -6,13 +6,21 @@ import type { AddFormPointType } from '../../types/PointType';
 import { addPointThunk } from '../../redux/thunkActions/addPointThunk';
 import { openModalWithError } from '../../redux/slices/modalSlice';
 
-export default function CharacterAddForm({ initialCoordinates, initialGif }: { initialCoordinates?: [number, number], initialGif: string }): JSX.Element {
+export default function CharacterAddForm({
+  initialCoordinates,
+  initialGif,
+}: {
+  initialCoordinates?: [number, number];
+  initialGif: string;
+}): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const addSubmitHandler = async (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const formData = Object.fromEntries(new FormData(event.currentTarget)) as unknown as AddFormPointType;
+    const formData = Object.fromEntries(
+      new FormData(event.currentTarget),
+    ) as unknown as AddFormPointType;
 
     // Проверка наличия специальных символов в значениях
     // const regex = /[^\w\s]/;
@@ -27,13 +35,15 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
     //   }
     // }
 
-    if (!initialCoordinates || !initialCoordinates.length || initialCoordinates.length !== 2 || isNaN(initialCoordinates[0]) || isNaN(initialCoordinates[1])) {
+    if (
+      !initialCoordinates ||
+      !initialCoordinates.length ||
+      initialCoordinates.length !== 2 ||
+      isNaN(initialCoordinates[0]) ||
+      isNaN(initialCoordinates[1])
+    ) {
       console.error('Invalid initialCoordinates');
-      dispatch(
-        openModalWithError(
-          'Поставьте на карте точку встречи!',
-        ),
-      );
+      dispatch(openModalWithError('Поставьте на карте точку встречи!'));
       return;
     }
 
@@ -65,7 +75,7 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
     <Box width="350px">
       <form onSubmit={addSubmitHandler}>
         <FormControl>
-          <FormLabel color="#FDA065">Тема для обсуждения</FormLabel>
+          <FormLabel color="#FDA065">Предложи тему для разговора</FormLabel>
           <Input 
             name="theme" 
             type="text" 
@@ -82,7 +92,11 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
             bg={useColorModeValue('#878A92', 'gray.900')}
             required 
           />
-          <FormLabel color="#FDA065">Выберите место на карте</FormLabel>
+          
+        <FormLabel color="#FDA065" display="flex" flexDirection="column">
+          <span>Как выглядишь и во</span>
+          <span>сколько будешь на месте?</span>
+        </FormLabel>
   
           <Button type="submit" color="#4F535E" bg="#FDA065" mt={4}>Add</Button>
         </FormControl>

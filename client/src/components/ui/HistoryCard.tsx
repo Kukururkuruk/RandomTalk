@@ -111,6 +111,7 @@ import { UserStateType } from '../../types/authType';
 import { HistoryType } from '../../types/historyType';
 import { useAppSelector } from '../../hooks/useReduxHook';
 import ratingPointService from '../../services/ratingService';
+import paperbg from '../../../public/paperbg.jpg'
 type HistoryCardProps = {
     history: HistoryType;
     point: PointType;
@@ -118,6 +119,7 @@ type HistoryCardProps = {
   };
 
 const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
+  const [isRatingSubmitted, setIsRatingSubmitted] = useState(false)
   const [ratingValue, setRatingValue] = useState(0);
     const userID = useAppSelector((state) => state.auth.user.status === 'logged' ? state.auth.user.id : '')
     const theme = point.id === history.pointId ? point.theme : ''
@@ -138,6 +140,7 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
         await ratingPointService.ratingPoint({ userId: point.userId, rating: rate });
         await ratingPointService.editRating(point.userId);
       }
+      setIsRatingSubmitted(true)
     };
     
   return (
@@ -148,18 +151,20 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
       p="4"
       mb="4"
       boxShadow="md"
-
+      color="#000000"
+      bgImage={paperbg}
       width="700px"
 
     >
-      <Text fontSize="xl" fontWeight="semibold" mb="2">
+      <Text fontSize="xl" fontWeight="semibold" mb="2" >
         Тема разговора: {theme}
       </Text>
       <Flex alignItems="center" justifyContent="center" >
         <Flex alignItems="center" flexDirection="column">
-          <Text>{author}</Text>
-          <Text>{client}</Text>
-          <div>
+          <Text>Создатель: {author}</Text>
+          <Text>Собеседник: {client}</Text>
+          {!isRatingSubmitted &&(
+          <div>   
               <Rating
                 onClick={handleRating}
                 size={50}
@@ -176,7 +181,7 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
                 fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
                 SVGstyle={{ display: 'inline' }}
               />
-            </div>
+            </div>)}
         </Flex>
         <Badge colorScheme="green">{}</Badge>
       </Flex>
@@ -185,3 +190,4 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
 };
 
 export default HistoryCard;
+

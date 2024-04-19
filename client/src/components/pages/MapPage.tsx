@@ -5,6 +5,7 @@ import DismissItem from '../ui/DismissItem';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
 import MyMap from '../ui/Map';
 import { getBansThunk } from '../../redux/thunkActions/addPointThunk';
+import paperbg from '../../../public/paperbg.jpg'
 
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -35,7 +36,8 @@ export default function MapPage(): JSX.Element {
 
   return (
     <Flex justify="center">
-      <Box bg={useColorModeValue('#4F535E', 'gray.900')} w="lg" p={8} borderRadius="md">
+      <Box bg={useColorModeValue('#4F535E', 'gray.900')} w="lg" p={8} borderRadius="md" bgImage={paperbg}>
+
         <Text
           fontSize="3xl"
           fontWeight="bold"
