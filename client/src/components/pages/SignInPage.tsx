@@ -63,7 +63,7 @@ export default function SignInPage(): JSX.Element {
                 type="email"
                 placeholder="Email"
                 name="email"
-                bg={useColorModeValue('#C9B7B7', 'gray.900')} // Resolved conflict: keeping background color
+                bg={useColorModeValue('gray.100', 'gray.900')} // Resolved conflict: keeping background color
                 color="#AD574A"
               />
             </FormControl>

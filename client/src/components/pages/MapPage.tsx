@@ -5,7 +5,6 @@ import DismissItem from '../ui/DismissItem';
 import { getPointsThunk } from '../../redux/thunkActions/mapThunkAction';
 import MyMap from '../ui/Map';
 import { getBansThunk } from '../../redux/thunkActions/addPointThunk';
-import { toast } from 'react-toastify';
 
 export default function MapPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -21,7 +20,6 @@ export default function MapPage(): JSX.Element {
     const intervalId = setInterval(() => {
       void dispatch(getPointsThunk());
       void dispatch(getBansThunk());
-      checkNotifications();
     }, 2000);
 
     setRefreshInterval(intervalId);
@@ -34,12 +32,6 @@ export default function MapPage(): JSX.Element {
   const filteredPoints = points.filter(
     (point) => !bans.some((ban) => ban.pointId === point.id && ban.userId === userID) && point.agreed === false && point.userId !== userID
   );
-
-  const checkNotifications = () => {
-    if (filteredPoints.length > 0) {
-      toast.info(`You have ${filteredPoints.length} new dismiss points!`);
-    }
-  };
 
   return (
     <Flex justify="center">

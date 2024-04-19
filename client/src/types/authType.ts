@@ -24,4 +24,5 @@ export type UserStateType =
 export type AuthStateType = {
   accessToken: string;
   user: UserStateType;
+  allUsers: UserType[],
 };

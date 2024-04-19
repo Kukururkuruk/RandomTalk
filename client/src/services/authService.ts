@@ -1,5 +1,5 @@
 import type { AxiosInstance, AxiosResponse } from 'axios';
-import type { AuthStateType, UserSignInType, UserSignUpType } from '../types/authType';
+import type { AuthStateType, UserSignInType, UserSignUpType, UserType } from '../types/authType';
 import axiosInstance from './apiInstance';
 
 class AuthService {

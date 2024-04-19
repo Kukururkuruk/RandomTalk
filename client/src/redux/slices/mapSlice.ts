@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { MapInitState } from '../../types/PointType';
-import { getPointsThunk } from '../thunkActions/mapThunkAction';
+import { getPointsThunk, getUsersThunk } from '../thunkActions/mapThunkAction';
 import { banPointThunk, getBansThunk } from '../thunkActions/addPointThunk';
 
 const initialState: MapInitState = {
   points: [],
   bans: [],
+  allUsers: [],
   isLoading: false,
   error: '',
 };
@@ -27,6 +28,10 @@ const mapSlice = createSlice({
         state.bans = [action.payload, ...state.bans];
 
       }
+    });
+
+    builder.addCase(getUsersThunk.fulfilled, (state, action) => {
+      state.allUsers = action.payload;
     });
 
     builder
