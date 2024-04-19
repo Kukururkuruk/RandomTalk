@@ -107,7 +107,7 @@
   background-size: 400% 400%; /* Updated size */
   animation: AnimationName 22s ease infinite; /* New animation details */
 }
-
+ 
 /* Standard syntax */
 @keyframes AnimationName {
   0% { background-position: 47% 0%; }
