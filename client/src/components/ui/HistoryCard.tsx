@@ -163,7 +163,8 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
         <Flex alignItems="center" flexDirection="column">
           <Text>Создатель: {author}</Text>
           <Text>Собеседник: {client}</Text>
-          <div>
+          {!isRatingSubmitted &&(
+          <div>   
               <Rating
                 onClick={handleRating}
                 size={50}
@@ -189,3 +190,4 @@ const HistoryCard = ({ history, point, user } : HistoryCardProps) => {
 };
 
 export default HistoryCard;
+
