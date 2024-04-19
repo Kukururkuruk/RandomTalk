@@ -46,11 +46,10 @@ export default function DismissItem({ point, index }: StudentItemProps): JSX.Ele
   };
 
   const backgroundColor = useColorModeValue('#FDA065', 'gray.600');
-  const hoverBackgroundColor = useColorModeValue('gray.100', 'gray.600');
+  const hoverBackgroundColor = useColorModeValue('#878A92', 'gray.600');
 
   return (
-    <>
-      <Box display={point.visibility === false ? "none" : "flex"} flexDirection="column">
+    <Box display={point.visibility === false ? "none" : "flex"} flexDirection="column">
         <Box
           display="flex"
           justifyContent="space-between"
@@ -63,7 +62,7 @@ export default function DismissItem({ point, index }: StudentItemProps): JSX.Ele
           }}
         >
           <Text
-            color="#AD574A"
+            color="#FDA065"
             fontWeight="bold"
             _hover={{ color: backgroundColor }}
           >
@@ -80,30 +79,31 @@ export default function DismissItem({ point, index }: StudentItemProps): JSX.Ele
           </Button>
         </Box>
         <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-          <ModalOverlay />
-          <ModalContent width={700}>
-            <ModalHeader>Введите свою внешность, через сколько будете и т.д.</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Input
-                placeholder="Введите вашу информацию"
-                value={reason}
-                onChange={(e) => setReason(e.target.value)}
-                height={150}
-                required
-              />
-            </ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={handleConfirm}>
-                Подтвердить
-              </Button>
-              <Button variant="ghost" onClick={handleCloseModal}>
-                Закрыть
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+  <ModalOverlay />
+  <ModalContent width={700} bg="#4F535E" color="#FDA065">
+    <ModalHeader>Введите свою внешность, через сколько будете и т.д.</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>
+      <Input
+        placeholder="Введите вашу информацию"
+        value={reason}
+        onChange={(e) => setReason(e.target.value)}
+        height={150}
+        required
+        color="#FDA065"
+      />
+    </ModalBody>
+    <ModalFooter>
+      <Button colorScheme="orange" mr={3} onClick={handleConfirm}>
+        Подтвердить
+      </Button>
+      <Button variant="ghost" color="#FDA065" onClick={handleCloseModal}>
+        Закрыть
+      </Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+
       </Box>
-    </>
   );
 }

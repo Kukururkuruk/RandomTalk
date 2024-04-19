@@ -46,7 +46,7 @@ export default function SignUpPage(): JSX.Element {
 
   return (
     <Flex justify="center" align="center" minHeight="100vh" p={12}>
-      <Box boxShadow="2xl" rounded="md" overflow="hidden">
+      <Box boxShadow="2xl" rounded="md" overflow="hidden" >
         <Grid
           templateColumns={{ md: "repeat(2, minmax(0, 1fr))" }}
           gap={10}
@@ -58,7 +58,7 @@ export default function SignUpPage(): JSX.Element {
     justifyContent="center" // Centers the image on the main-axis (horizontally)
     alignItems="center" // Centers the image on the cross-axis (vertically)
   >
-<div className="image-container">
+<div className="image-container" >
   <Image
     src={regCat}
     alt="A cool cat"

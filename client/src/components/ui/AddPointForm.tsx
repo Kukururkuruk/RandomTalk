@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useReduxHook';
@@ -62,16 +62,32 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
   };
 
   return (
-    <form onSubmit={addSubmitHandler}>
-      <FormControl>
-        <FormLabel>Тема для обсуждения</FormLabel>
-        <Input name="theme" type="text" required />
-
-        <FormLabel>Во что ты одет?</FormLabel>
-        <Input name="cloth" type="text" required />
-
-        <Button type="submit">Add</Button>
-      </FormControl>
-    </form>
+    <Box width="350px">
+      <form onSubmit={addSubmitHandler}>
+        <FormControl>
+          <FormLabel color="#FDA065">Тема для обсуждения</FormLabel>
+          <Input 
+            name="theme" 
+            type="text" 
+            borderColor="#4F535E"
+            bg={useColorModeValue('#878A92', 'gray.900')}
+            required 
+          />
+  
+          <FormLabel color="#FDA065">Во что ты одет?</FormLabel>
+          <Input 
+            name="cloth" 
+            type="text" 
+            borderColor="#4F535E"
+            bg={useColorModeValue('#878A92', 'gray.900')}
+            required 
+          />
+          <FormLabel color="#FDA065">Выберите место на карте</FormLabel>
+  
+          <Button type="submit" color="#4F535E" bg="#FDA065" mt={4}>Add</Button>
+        </FormControl>
+      </form>
+    </Box>
   );
+  
 }
