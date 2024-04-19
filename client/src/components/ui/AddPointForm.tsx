@@ -1,39 +1,49 @@
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useReduxHook';
 import type { AddFormPointType } from '../../types/PointType';
 import { addPointThunk } from '../../redux/thunkActions/addPointThunk';
-import { useNavigate } from 'react-router-dom';
 import { openModalWithError } from '../../redux/slices/modalSlice';
 
-export default function CharacterAddForm({ initialCoordinates, initialGif }: { initialCoordinates?: [number, number], initialGif: string }): JSX.Element {
+export default function CharacterAddForm({
+  initialCoordinates,
+  initialGif,
+}: {
+  initialCoordinates?: [number, number];
+  initialGif: string;
+}): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const addSubmitHandler = async (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const formData = Object.fromEntries(new FormData(event.currentTarget)) as unknown as AddFormPointType;
+    const formData = Object.fromEntries(
+      new FormData(event.currentTarget),
+    ) as unknown as AddFormPointType;
 
     // Проверка наличия специальных символов в значениях
-    const regex = /[^\w\s]/;
-    for (const key in formData) {
-      if (Object.prototype.hasOwnProperty.call(formData, key)) {
-        const value = formData[key];
-        if (regex.test(value)) {
-          console.error(`Invalid input for ${key}`);
-          dispatch(openModalWithError(`Неверные данные для ${key}`));
-          return;
-        }
-      }
-    }
+    // const regex = /[^\w\s]/;
+    // for (const key in formData) {
+    //   if (Object.prototype.hasOwnProperty.call(formData, key)) {
+    //     const value = formData[key];
+    //     if (regex.test(value)) {
+    //       console.error(`Invalid input for ${key}`);
+    //       dispatch(openModalWithError(`Неверные данные для ${key}`));
+    //       return;
+    //     }
+    //   }
+    // }
 
-    if (!initialCoordinates || !initialCoordinates.length || initialCoordinates.length !== 2 || isNaN(initialCoordinates[0]) || isNaN(initialCoordinates[1])) {
+    if (
+      !initialCoordinates ||
+      !initialCoordinates.length ||
+      initialCoordinates.length !== 2 ||
+      isNaN(initialCoordinates[0]) ||
+      isNaN(initialCoordinates[1])
+    ) {
       console.error('Invalid initialCoordinates');
-      dispatch(
-        openModalWithError(
-          'Поставьте на карте точку встречи!',
-        ),
-      );
+      dispatch(openModalWithError('Поставьте на карте точку встречи!'));
       return;
     }
 
@@ -53,7 +63,7 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
       ...formData,
       longitude,
       latitude,
-      img: initialGif ? initialGif : null,
+      img: initialGif || null,
     };
 
     await dispatch(addPointThunk(updatedFormData as AddFormPointType));
@@ -64,10 +74,13 @@ export default function CharacterAddForm({ initialCoordinates, initialGif }: { i
   return (
     <form onSubmit={addSubmitHandler}>
       <FormControl>
-        <FormLabel>Тема для обсуждения</FormLabel>
+        <FormLabel>Предложи тему для разговора</FormLabel>
         <Input name="theme" type="text" required />
 
-        <FormLabel>Во что ты одет?</FormLabel>
+        <FormLabel display="flex" flexDirection="column">
+          <span>Как выглядишь и во</span>
+          <span>сколько будешь на месте?</span>
+        </FormLabel>
         <Input name="cloth" type="text" required />
 
         <Button type="submit">Add</Button>

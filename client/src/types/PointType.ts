@@ -1,3 +1,5 @@
+import { UserType } from "./authType";
+
 export type PointType = {
   id: number,
   theme: string,
@@ -36,8 +38,15 @@ export type BanType = {
 export type MapInitState = {
   points: PointType[],
   bans: BanType[],
+  allUsers: UserType[],
   isLoading: boolean,
   error: string | undefined,
+};
+
+export type RatingType = {
+  id: number,
+  userId: number,
+  rating: number,
 };
 
 

@@ -25,6 +25,12 @@
   
 } */
 
+
+* {
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+
 #bubble {
   opacity: 1.0;
   display: inline-block;
@@ -101,7 +107,7 @@
   background-size: 400% 400%; /* Updated size */
   animation: AnimationName 22s ease infinite; /* New animation details */
 }
-
+ 
 /* Standard syntax */
 @keyframes AnimationName {
   0% { background-position: 47% 0%; }
@@ -128,6 +134,10 @@
   overflow: hidden;
 }
 
+.image-container {
+  margin: auto;
+  display: flex;
+}
 /* #quote {
   color: #25fd01;
   font: 400 2em consolas;
@@ -143,3 +153,59 @@
     width: 0;
   }
 } */
+
+.container {
+  transform: translate(0%,0%);
+}
+
+.btn {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 25px;
+  width: 150px;
+  height: 40px;
+  background: #fc9802;
+  border: 0px;
+  position: relative;
+  box-shadow: 
+    inset -4px 2px 1px 1px grey,
+    inset -4px -2px 1px 1px lightgray,
+    inset 4px 0px 1px 1px lightgray;   
+}
+
+.btn:hover {
+  cursor: pointer;
+	background-color: #fc7b02;
+}
+
+.btn:active {
+  top: 5px;
+  box-shadow: 
+    -4px 2px 1px 1px grey,
+    -4px -2px 1px 1px lightgray,
+    4px 0px 1px 1px lightgray; 
+}
+
+.btn::after {
+  content: '';
+  background: black;
+  position: absolute;
+  left: -2.5%;
+  top: 0;
+  width: 105%;
+  height: 100%;
+  z-index: -1;
+}
+
+.btn::before {
+  content: '';
+  background: black;
+  position: absolute;
+  left: 0;
+  top: -5%;
+  width: 100%;
+  height: 113%;
+  z-index: -1;
+}
+

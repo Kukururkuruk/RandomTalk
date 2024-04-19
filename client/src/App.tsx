@@ -14,6 +14,7 @@ import UserPage from './components/pages/UserPage';
 import MapPage2 from './components/pages/MapPage2';
 import PageNotFound from './components/pages/PageNotFound';
 import AddPointPage from './components/pages/AddPointPage';
+import TopDush from './components/pages/TopDush';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -64,6 +65,7 @@ function App(): JSX.Element {
         },
         { path: '/mappage', element: <MapPage /> },
         { path: '/mappage2', element: <MapPage2 /> },
+        { path: '/top', element: <TopDush /> },
         {
           path: '/userpage',
           element: (
