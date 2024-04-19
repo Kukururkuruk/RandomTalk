@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Flex, Text, Stack, Heading, Button } from '@chakra-ui/react';
+import { Box, Flex, Text, Heading } from '@chakra-ui/react';
 import cat from '../../../public/Designer.jpeg'; // Assuming Designer.jpeg is your cat image
+import { Link } from 'react-router-dom';
 
 export default function MainPage(): JSX.Element {
   return (
@@ -11,7 +12,7 @@ export default function MainPage(): JSX.Element {
         </Box>
       </Box>
       <Box>
-        <Heading fontSize="2xl">Аниме-кот бариста</Heading>
+        <Heading fontSize="2xl">Бариста Кот: Ток Рандомич</Heading>
 
         <div className="bubble grow left">
           <Text className="p" fontSize="xl">
@@ -29,10 +30,12 @@ export default function MainPage(): JSX.Element {
         </div>
         <Flex gap={2} mt={4}>
           <div className="container">
-            <button className="btn">Посидеть</button>
+            <Link to='/addpoint'><button className="btn">Посидеть</button></Link>
+            
           </div>
           <div className="container">
-            <button className="btn">Поискать</button>
+          <Link to='/mappage'><button className="btn">Поискать</button></Link>
+            
           </div>
         </Flex>
       </Box>

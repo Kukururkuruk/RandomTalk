@@ -33,4 +33,11 @@ apiRatingPointRouter.put("/:id", async (req, res) => {
   }
 });
 
+apiRatingPointRouter.get("/all", async (req, res) => {
+  const allUsers = await User.findAll({order: [
+    ['rating', 'ASC'],
+  ],});
+  res.json(allUsers);
+});
+
 module.exports = apiRatingPointRouter;

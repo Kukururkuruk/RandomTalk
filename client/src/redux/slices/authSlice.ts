@@ -1,10 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { AuthStateType } from '../../types/authType';
-import { checkTokenThunk, logOutThunk, signInThunk, signUpThunk } from '../thunkActions/authThunkActions';
+import {
+  checkTokenThunk,
+  logOutThunk,
+  signInThunk,
+  signUpThunk,
+} from '../thunkActions/authThunkActions';
 
 const initialState: AuthStateType = {
   accessToken: '',
   user: { status: 'pending' },
+  allUsers: [],
 };
 
 const authSlice = createSlice({
@@ -26,15 +32,16 @@ const authSlice = createSlice({
       state.user = { ...user, ...state.user };
     });
 
-    builder.addCase(signUpThunk.fulfilled, (state, action) => {
-      const { accessToken, user } = action.payload;
-      state.accessToken = accessToken;
-      state.user.status = 'logged';
-      state.user = { ...user, ...state.user };
-    })
-    .addCase(signUpThunk.rejected, (state) => {
-      state.user = { status: 'guest' };
-    });
+    builder
+      .addCase(signUpThunk.fulfilled, (state, action) => {
+        const { accessToken, user } = action.payload;
+        state.accessToken = accessToken;
+        state.user.status = 'logged';
+        state.user = { ...user, ...state.user };
+      })
+      .addCase(signUpThunk.rejected, (state) => {
+        state.user = { status: 'guest' };
+      });
 
     builder.addCase(logOutThunk.fulfilled, (state) => {
       state.user = { status: 'guest' };
