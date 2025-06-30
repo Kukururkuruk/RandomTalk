@@ -76,7 +76,6 @@ export default function SignInPage(): JSX.Element {
                 placeholder="Password"
                 bg={useColorModeValue('gray.100', 'gray.900')}
                 color="#AD574A"
-                required // Resolved conflict: keeping required attribute
               />
             </FormControl>
 
